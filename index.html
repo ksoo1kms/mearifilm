@@ -198,12 +198,28 @@ nav.scrolled .nav-logo { opacity: 1; transform: translateY(0); }
   position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #050507; 
   transition: background 0.5s ease;
 }
+
+.frame-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
 .frame-placeholder-view {
   font-family: 'Montserrat', sans-serif; font-size: 0.5rem; letter-spacing: 0.3em; color: #202025; text-transform: uppercase;
   transition: color 0.5s ease, transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 @media (min-width: 1025px) {
-  .frame:hover .frame-placeholder-view { transform: scale(1.1); color: var(--silver); }
+  .frame:hover 
+.frame-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.frame-placeholder-view { transform: scale(1.1); color: var(--silver); }
   .frame:hover .frame-img-container { background: #09090d; }
   .frame:hover { border-color: #25252b; background: #040406; }
 }
@@ -224,6 +240,16 @@ nav.scrolled .nav-logo { opacity: 1; transform: translateY(0); }
   display: flex; align-items: center; justify-content: center;
 }
 .lightbox.active .lightbox-img-wrapper { transform: scale(1); }
+
+.lightbox-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: none;
+}
+.lightbox-img-wrapper img.active { display: block; }
+.lightbox-img-wrapper .lightbox-placeholder-text.hidden { display: none; }
+
 .lightbox-placeholder-text { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; letter-spacing: 0.4em; color: #404045; text-transform: uppercase; }
 .lightbox-close { position: absolute; top: 4rem; right: 6.5rem; font-family: 'Montserrat', sans-serif; font-size: 0.7rem; letter-spacing: 0.35em; color: var(--silver); text-transform: uppercase; transition: color 0.3s; }
 .lightbox-caption { margin-top: 2rem; font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; letter-spacing: 0.05em; color: var(--silver); text-align: center; }
@@ -348,50 +374,50 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
 
   <div class="scroll-wrapper" id="scrollWrapper">
     <div class="frames-grid" id="framesGrid">
-      <div class="frame" onclick="openDetail('2026.06')">
+      <div class="frame" onclick="openDetail('2026.06', 'https://i.ibb.co/vxCKft4Z/260702-D-017.jpg')">
         <div class="frame-top-meta"><span class="frame-index">IDX-001</span><span class="frame-date">2026.06</span></div>
         <div class="frame-img-container">
-          <span class="frame-placeholder-view">Awaiting Development</span>
+          <img src="https://i.ibb.co/vxCKft4Z/260702-D-017.jpg" alt="Frame 01">
         </div>
         <div class="frame-bottom-meta">
           <div class="frame-coord">Frame 01</div>
         </div>
       </div>
        
-      <div class="frame" onclick="openDetail('2026.06')">
+      <div class="frame" onclick="openDetail('2026.06', 'https://i.ibb.co/b506wbf3/260702-F-005.jpg')">
         <div class="frame-top-meta"><span class="frame-index">IDX-002</span><span class="frame-date">2026.06</span></div>
         <div class="frame-img-container">
-          <span class="frame-placeholder-view">Awaiting Development</span>
+          <img src="https://i.ibb.co/b506wbf3/260702-F-005.jpg" alt="Frame 02">
         </div>
         <div class="frame-bottom-meta">
           <div class="frame-coord">Frame 02</div>
         </div>
       </div>
 
-      <div class="frame" onclick="openDetail('2026.06')">
+      <div class="frame" onclick="openDetail('2026.06', 'https://i.ibb.co/ycR9T9mB/260702-D-005.jpg')">
         <div class="frame-top-meta"><span class="frame-index">IDX-003</span><span class="frame-date">2026.06</span></div>
         <div class="frame-img-container">
-          <span class="frame-placeholder-view">Awaiting Development</span>
+          <img src="https://i.ibb.co/ycR9T9mB/260702-D-005.jpg" alt="Frame 03">
         </div>
         <div class="frame-bottom-meta">
           <div class="frame-coord">Frame 03</div>
         </div>
       </div>
 
-      <div class="frame" onclick="openDetail('2026.06')">
+      <div class="frame" onclick="openDetail('2026.06', 'https://i.ibb.co/60JvkYZ5/260702-D-010.jpg')">
         <div class="frame-top-meta"><span class="frame-index">IDX-004</span><span class="frame-date">2026.06</span></div>
         <div class="frame-img-container">
-          <span class="frame-placeholder-view">Awaiting Development</span>
+          <img src="https://i.ibb.co/60JvkYZ5/260702-D-010.jpg" alt="Frame 04">
         </div>
         <div class="frame-bottom-meta">
           <div class="frame-coord">Frame 04</div>
         </div>
       </div>
 
-      <div class="frame" onclick="openDetail('2026.06')">
+      <div class="frame" onclick="openDetail('2026.06', 'https://i.ibb.co/jNdCqxR/260702-D-013.jpg')">
         <div class="frame-top-meta"><span class="frame-index">IDX-005</span><span class="frame-date">2026.06</span></div>
         <div class="frame-img-container">
-          <span class="frame-placeholder-view">Awaiting Development</span>
+          <img src="https://i.ibb.co/jNdCqxR/260702-D-013.jpg" alt="Frame 05">
         </div>
         <div class="frame-bottom-meta">
           <div class="frame-coord">Frame 05</div>
@@ -414,7 +440,8 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
 <div class="lightbox" id="lightbox" onclick="closeDetail()">
   <div class="lightbox-close">Close —</div>
   <div class="lightbox-img-wrapper" onclick="event.stopPropagation()">
-    <span class="lightbox-placeholder-text">Image Archive Locked</span>
+    <img id="lightboxImage" src="" alt="Selected work">
+    <span class="lightbox-placeholder-text" id="lightboxPlaceholder">Image Archive Locked</span>
   </div>
   <div class="lightbox-caption" id="lightboxCaption"></div>
 </div>
@@ -518,8 +545,21 @@ const io = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.ex-title, .ex-note, .frames-grid, .contact-head, .contact-line').forEach(el => io.observe(el));
 
-function openDetail(date) {
+function openDetail(date, src) {
   document.getElementById('lightboxCaption').textContent = date;
+  const lightboxImage = document.getElementById('lightboxImage');
+  const lightboxPlaceholder = document.getElementById('lightboxPlaceholder');
+
+  if (src) {
+    lightboxImage.src = src;
+    lightboxImage.classList.add('active');
+    lightboxPlaceholder.classList.add('hidden');
+  } else {
+    lightboxImage.src = '';
+    lightboxImage.classList.remove('active');
+    lightboxPlaceholder.classList.remove('hidden');
+  }
+
   document.getElementById('lightbox').classList.add('active');
 }
 function closeDetail() { document.getElementById('lightbox').classList.remove('active'); }
