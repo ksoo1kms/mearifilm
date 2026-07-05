@@ -235,19 +235,36 @@ nav.scrolled .nav-logo { opacity: 1; transform: translateY(0); }
 }
 .lightbox.active { opacity: 1; pointer-events: auto; }
 .lightbox-img-wrapper { 
-  max-width: 75vh; width: 100%; aspect-ratio: 1/1; border: 1px solid #111113; overflow: hidden; background: #050507; transform: scale(0.97); transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); 
+  max-width: min(92vw, 1480px); width: 100%; border: 1px solid #111113; overflow: hidden; background: #050507; transform: scale(0.97); transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); 
   display: flex; align-items: center; justify-content: center;
 }
 .lightbox.active .lightbox-img-wrapper { transform: scale(1); }
 
-.lightbox-img-wrapper img {
+.lightbox-gallery {
   width: 100%;
-  height: 100%;
+  display: flex;
+  gap: 18px;
+  padding: 18px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+  -webkit-overflow-scrolling: touch;
+}
+.lightbox-gallery::-webkit-scrollbar { height: 3px; }
+.lightbox-gallery::-webkit-scrollbar-track { background: transparent; }
+.lightbox-gallery::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.18); border-radius: 2px; }
+.lightbox-gallery img {
+  width: min(62vh, 420px);
+  height: min(62vh, 420px);
   object-fit: cover;
   object-position: center center;
-  display: none;
+  flex: 0 0 auto;
+  display: block;
+  border: 1px solid #111113;
+  background: #050507;
 }
-.lightbox-img-wrapper img.active { display: block; }
+.lightbox-gallery.hidden { display: none; }
 .lightbox-img-wrapper .lightbox-placeholder-text.hidden { display: none; }
 
 .lightbox-placeholder-text { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; letter-spacing: 0.4em; color: #404045; text-transform: uppercase; }
@@ -325,7 +342,9 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
    
   .lightbox { padding: 1rem; }
   .lightbox-close { top: 2rem; right: 2rem; font-size: 0.65rem; } 
-  .lightbox-img-wrapper { max-width: 100%; aspect-ratio: 1/1; }
+  .lightbox-img-wrapper { max-width: 100%; }
+  .lightbox-gallery { gap: 12px; padding: 12px; }
+  .lightbox-gallery img { width: 78vw; height: 78vw; }
   .lightbox-caption { font-size: 0.95rem; margin-top: 1.5rem; }
 }
 </style>
@@ -374,63 +393,63 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
 
   <div class="scroll-wrapper" id="scrollWrapper">
     <div class="frames-grid" id="framesGrid">
-      <div class="frame has-image" onclick="openDetail('2026.06', 'https://i.ibb.co/cSBdGWRr/for-upolad-1.jpg')">
-        <div class="frame-top-meta"><span class="frame-index">IDX-001</span><span class="frame-date">2026.06</span></div>
+      <div class="frame has-image" onclick="openGallery('2026.07')">
+        <div class="frame-top-meta"><span class="frame-index">IDX-001</span><span class="frame-date">2026.07</span></div>
         <div class="frame-img-container">
-          <img src="https://i.ibb.co/cSBdGWRr/for-upolad-1.jpg" alt="Frame 01">
+          <img src="https://i.ibb.co/cSBdGWRr/for-upolad-1.jpg" alt="Actor 01">
         </div>
         <div class="frame-bottom-meta">
-          <div class="frame-coord">Frame 01</div>
+          <div class="frame-coord">Actor 01</div>
         </div>
       </div>
        
-      <div class="frame has-image" onclick="openDetail('2026.06', 'https://i.ibb.co/v4HsQ57H/for-upolad-2.jpg')">
-        <div class="frame-top-meta"><span class="frame-index">IDX-002</span><span class="frame-date">2026.06</span></div>
-        <div class="frame-img-container">
-          <img src="https://i.ibb.co/v4HsQ57H/for-upolad-2.jpg" alt="Frame 02">
-        </div>
-        <div class="frame-bottom-meta">
-          <div class="frame-coord">Frame 02</div>
-        </div>
-      </div>
-
-      <div class="frame has-image" onclick="openDetail('2026.06', 'https://i.ibb.co/tTnx94Pr/for-upolad-3.jpg')">
-        <div class="frame-top-meta"><span class="frame-index">IDX-003</span><span class="frame-date">2026.06</span></div>
-        <div class="frame-img-container">
-          <img src="https://i.ibb.co/tTnx94Pr/for-upolad-3.jpg" alt="Frame 03">
-        </div>
-        <div class="frame-bottom-meta">
-          <div class="frame-coord">Frame 03</div>
-        </div>
-      </div>
-
-      <div class="frame has-image" onclick="openDetail('2026.06', 'https://i.ibb.co/n85zHXcQ/for-upolad-4.jpg')">
-        <div class="frame-top-meta"><span class="frame-index">IDX-004</span><span class="frame-date">2026.06</span></div>
-        <div class="frame-img-container">
-          <img src="https://i.ibb.co/n85zHXcQ/for-upolad-4.jpg" alt="Frame 04">
-        </div>
-        <div class="frame-bottom-meta">
-          <div class="frame-coord">Frame 04</div>
-        </div>
-      </div>
-
-      <div class="frame has-image" onclick="openDetail('2026.06', 'https://i.ibb.co/qLph6dFz/for-upolad-5.jpg')">
-        <div class="frame-top-meta"><span class="frame-index">IDX-005</span><span class="frame-date">2026.06</span></div>
-        <div class="frame-img-container">
-          <img src="https://i.ibb.co/qLph6dFz/for-upolad-5.jpg" alt="Frame 05">
-        </div>
-        <div class="frame-bottom-meta">
-          <div class="frame-coord">Frame 05</div>
-        </div>
-      </div>
-
-      <div class="frame" onclick="openDetail('2026.06')">
-        <div class="frame-top-meta"><span class="frame-index">IDX-006</span><span class="frame-date">2026.06</span></div>
+      <div class="frame" onclick="openDetail('2026.07')">
+        <div class="frame-top-meta"><span class="frame-index">IDX-002</span><span class="frame-date">2026.07</span></div>
         <div class="frame-img-container">
           <span class="frame-placeholder-view">Awaiting Development</span>
         </div>
         <div class="frame-bottom-meta">
-          <div class="frame-coord">Frame 06</div>
+          <div class="frame-coord">Actor 02</div>
+        </div>
+      </div>
+       
+      <div class="frame" onclick="openDetail('2026.07')">
+        <div class="frame-top-meta"><span class="frame-index">IDX-003</span><span class="frame-date">2026.07</span></div>
+        <div class="frame-img-container">
+          <span class="frame-placeholder-view">Awaiting Development</span>
+        </div>
+        <div class="frame-bottom-meta">
+          <div class="frame-coord">Actor 03</div>
+        </div>
+      </div>
+       
+      <div class="frame" onclick="openDetail('2026.07')">
+        <div class="frame-top-meta"><span class="frame-index">IDX-004</span><span class="frame-date">2026.07</span></div>
+        <div class="frame-img-container">
+          <span class="frame-placeholder-view">Awaiting Development</span>
+        </div>
+        <div class="frame-bottom-meta">
+          <div class="frame-coord">Actor 04</div>
+        </div>
+      </div>
+       
+      <div class="frame" onclick="openDetail('2026.07')">
+        <div class="frame-top-meta"><span class="frame-index">IDX-005</span><span class="frame-date">2026.07</span></div>
+        <div class="frame-img-container">
+          <span class="frame-placeholder-view">Awaiting Development</span>
+        </div>
+        <div class="frame-bottom-meta">
+          <div class="frame-coord">Actor 05</div>
+        </div>
+      </div>
+       
+      <div class="frame" onclick="openDetail('2026.07')">
+        <div class="frame-top-meta"><span class="frame-index">IDX-006</span><span class="frame-date">2026.07</span></div>
+        <div class="frame-img-container">
+          <span class="frame-placeholder-view">Awaiting Development</span>
+        </div>
+        <div class="frame-bottom-meta">
+          <div class="frame-coord">Actor 06</div>
         </div>
       </div>
     </div>
@@ -440,7 +459,14 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
 <div class="lightbox" id="lightbox" onclick="closeDetail()">
   <div class="lightbox-close">Close —</div>
   <div class="lightbox-img-wrapper" onclick="event.stopPropagation()">
-    <img id="lightboxImage" src="" alt="Selected work">
+    <div class="lightbox-gallery hidden" id="lightboxGallery">
+      <img src="https://i.ibb.co/cSBdGWRr/for-upolad-1.jpg" alt="Actor 01 Work 1">
+      <img src="https://i.ibb.co/v4HsQ57H/for-upolad-2.jpg" alt="Actor 01 Work 2">
+      <img src="https://i.ibb.co/tTnx94Pr/for-upolad-3.jpg" alt="Actor 01 Work 3">
+      <img src="https://i.ibb.co/n85zHXcQ/for-upolad-4.jpg" alt="Actor 01 Work 4">
+      <img src="https://i.ibb.co/qLph6dFz/for-upolad-5.jpg" alt="Actor 01 Work 5">
+      <img src="https://i.ibb.co/LX1BJ876/for-upolad-6.jpg" alt="Actor 01 Work 6">
+    </div>
     <span class="lightbox-placeholder-text" id="lightboxPlaceholder">Image Archive Locked</span>
   </div>
   <div class="lightbox-caption" id="lightboxCaption"></div>
@@ -545,23 +571,27 @@ const io = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.ex-title, .ex-note, .frames-grid, .contact-head, .contact-line').forEach(el => io.observe(el));
 
-function openDetail(date, src) {
-  document.getElementById('lightboxCaption').textContent = date;
-  const lightboxImage = document.getElementById('lightboxImage');
+function openGallery(date) {
+  document.getElementById('lightboxCaption').textContent = date + ' / Actor 01';
+  const gallery = document.getElementById('lightboxGallery');
   const lightboxPlaceholder = document.getElementById('lightboxPlaceholder');
 
-  if (src) {
-    lightboxImage.src = src;
-    lightboxImage.classList.add('active');
-    lightboxPlaceholder.classList.add('hidden');
-  } else {
-    lightboxImage.src = '';
-    lightboxImage.classList.remove('active');
-    lightboxPlaceholder.classList.remove('hidden');
-  }
-
+  gallery.classList.remove('hidden');
+  gallery.scrollLeft = 0;
+  lightboxPlaceholder.classList.add('hidden');
   document.getElementById('lightbox').classList.add('active');
 }
+
+function openDetail(date) {
+  document.getElementById('lightboxCaption').textContent = date;
+  const gallery = document.getElementById('lightboxGallery');
+  const lightboxPlaceholder = document.getElementById('lightboxPlaceholder');
+
+  gallery.classList.add('hidden');
+  lightboxPlaceholder.classList.remove('hidden');
+  document.getElementById('lightbox').classList.add('active');
+}
+
 function closeDetail() { document.getElementById('lightbox').classList.remove('active'); }
 </script>
 
