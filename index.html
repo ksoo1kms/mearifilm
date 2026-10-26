@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>UNDEVELOPED</title>
+<title>메아리</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Montserrat:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Montserrat:wght@100;200;300;400;500;600;700&family=Noto+Sans+KR:wght@600;800;900&display=swap" rel="stylesheet">
 <style>
 /* 강제 최상단 시작을 위한 초기 스타일 보정 및 스크롤 연동 끊김 방지 */
 html, body { margin: 0; padding: 0; background: #000000; width: 100%; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
@@ -349,8 +349,8 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
 }
 
 /* HAN TENGYA — additional portrait series */
-.han-series { cursor: pointer; }
-.han-series:focus-visible { outline: 2px solid #fff; outline-offset: 5px; }
+.portrait-series { cursor: pointer; }
+.portrait-series:focus-visible { outline: 2px solid #fff; outline-offset: 5px; }
 .series-label {
   position: absolute; inset: auto 0 0; z-index: 6;
   display: flex; justify-content: space-between; align-items: end; gap: 1rem;
@@ -373,6 +373,11 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
   .lightbox-caption { margin-top: .75rem; }
   .gallery-navigation { margin-top: .5rem; }
 }
+/* 메아리 wordmark — Korean type with the existing editorial proportions. */
+.brand-mark, .nav-logo, .f-logo { font-family: 'Noto Sans KR', sans-serif; }
+.brand-mark { font-weight: 900; line-height: 1.12; letter-spacing: -.065em; }
+.nav-logo { font-weight: 800; }
+.editorial-corner-tag { font-family: 'Noto Sans KR', 'Montserrat', sans-serif; }
 </style>
 </head>
 <body>
@@ -381,11 +386,11 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
 <div class="scan-lines"></div>
 <div class="custom-cursor" id="customCursor"></div>
 <div class="editorial-frame"></div>
-<div class="editorial-corner-tag">LATENTREEL STUDIO [ 2026 ARCHIVE ]</div>
+<div class="editorial-corner-tag">메아리 [ 2026 ARCHIVE ]</div>
 
 <nav id="mainNav">
   <div class="nav-logo-wrapper">
-    <a href="#landing" class="nav-logo">UNDEVELOPED</a>
+    <a href="#landing" class="nav-logo">메아리</a>
   </div>
   <ul class="nav-links">
     <li><a href="#exhibition">Collection</a></li>
@@ -398,8 +403,8 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
   <div class="landing-overlay"></div>
   <div class="landing-content" id="landingContent">
     <div class="title-container">
-      <h1 class="brand-mark">UNDEVELOPED</h1>
-      <span class="studio-title">STUDIO</span>
+      <h1 class="brand-mark">메아리</h1>
+      <span class="studio-title">MEARI STUDIO</span>
       <span class="brand-serial">01/01</span>
     </div>
      
@@ -419,17 +424,18 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
 
   <div class="scroll-wrapper" id="scrollWrapper">
     <div class="frames-grid" id="framesGrid">
-      <div class="frame has-image" onclick="openGallery('2026.07')">
+      <div class="frame has-image portrait-series" role="button" tabindex="0"
+           aria-label="KIM SUMIN 시리즈 사진 6장 보기"
+           onclick="openGallery('2026.07')"
+           onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openGallery('2026.07'); }">
         <div class="frame-top-meta"><span class="frame-index">IDX-001</span><span class="frame-date">2026.07</span></div>
         <div class="frame-img-container">
-          <img src="https://i.ibb.co/cSBdGWRr/for-upolad-1.jpg" alt="Actor 01">
+          <img src="https://i.ibb.co/cSBdGWRr/for-upolad-1.jpg" alt="KIM SUMIN">
         </div>
-        <div class="frame-bottom-meta">
-          <div class="frame-coord">Actor 01</div>
-        </div>
+        <div class="series-label"><span>KIM SUMIN</span><span>06 / VIEW SERIES ↗</span></div>
       </div>
        
-      <div class="frame has-image han-series" role="button" tabindex="0"
+      <div class="frame has-image portrait-series" role="button" tabindex="0"
            aria-label="HAN TENGYA 시리즈 사진 5장 보기"
            onclick="openGallery('', 'han-tengya')"
            onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openGallery('', 'han-tengya'); }">
@@ -487,12 +493,12 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
   <button type="button" class="lightbox-close" aria-label="사진 닫기">Close —</button>
   <div class="lightbox-img-wrapper" onclick="event.stopPropagation()">
     <div class="lightbox-gallery hidden" id="lightboxGallery">
-      <img src="https://i.ibb.co/cSBdGWRr/for-upolad-1.jpg" alt="Actor 01 Work 1">
-      <img src="https://i.ibb.co/v4HsQ57H/for-upolad-2.jpg" alt="Actor 01 Work 2">
-      <img src="https://i.ibb.co/tTnx94Pr/for-upolad-3.jpg" alt="Actor 01 Work 3">
-      <img src="https://i.ibb.co/n85zHXcQ/for-upolad-4.jpg" alt="Actor 01 Work 4">
-      <img src="https://i.ibb.co/qLph6dFz/for-upolad-5.jpg" alt="Actor 01 Work 5">
-      <img src="https://i.ibb.co/LX1BJ876/for-upolad-6.jpg" alt="Actor 01 Work 6">
+      <img src="https://i.ibb.co/cSBdGWRr/for-upolad-1.jpg" alt="KIM SUMIN Work 1">
+      <img src="https://i.ibb.co/v4HsQ57H/for-upolad-2.jpg" alt="KIM SUMIN Work 2">
+      <img src="https://i.ibb.co/tTnx94Pr/for-upolad-3.jpg" alt="KIM SUMIN Work 3">
+      <img src="https://i.ibb.co/n85zHXcQ/for-upolad-4.jpg" alt="KIM SUMIN Work 4">
+      <img src="https://i.ibb.co/qLph6dFz/for-upolad-5.jpg" alt="KIM SUMIN Work 5">
+      <img src="https://i.ibb.co/LX1BJ876/for-upolad-6.jpg" alt="KIM SUMIN Work 6">
     </div>
     <span class="lightbox-placeholder-text" id="lightboxPlaceholder">Image Archive Locked</span>
   </div>
@@ -514,7 +520,7 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
 </section>
 
 <footer>
-  <span class="f-logo">© UNDEVELOPED — SECURED ARCHIVE.</span>
+  <span class="f-logo">© 메아리 — SECURED ARCHIVE.</span>
   <span class="f-copy">All Properties Restricted / 2026</span>
 </footer>
 
@@ -631,7 +637,7 @@ function openGallery(date, series = 'actor01') {
   const isHanTengya = series === 'han-tengya';
   document.getElementById('lightboxCaption').textContent = isHanTengya
     ? 'HAN TENGYA / 05 PHOTOGRAPHS'
-    : date + ' / Actor 01';
+    : 'KIM SUMIN / 06 PHOTOGRAPHS';
   if (isHanTengya) {
     galleryElement.replaceChildren(...hanTengyaImages.map(([number, description]) => {
       const img = document.createElement('img');
