@@ -378,6 +378,65 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
 .brand-mark { font-weight: 900; line-height: 1.12; letter-spacing: -.065em; }
 .nav-logo { font-weight: 800; }
 .editorial-corner-tag { font-family: 'Noto Sans KR', 'Montserrat', sans-serif; }
+
+/* Film collection — same black archive, wider frames for moving-image work. */
+.nav-logo { text-decoration: none; }
+.brand-sub, .film-card-title, .film-specs dd, .c-val { font-family: 'Montserrat', 'Noto Sans KR', sans-serif; }
+.ex-title { margin: 0; }
+.film-section { padding: 10rem 0 10rem 6.5rem; position: relative; z-index: 2; overflow: hidden; }
+.film-track { display: flex; gap: 40px; width: max-content; }
+.film-card { display: flex; flex-direction: column; flex: 0 0 520px; width: 520px; border: 0; background: transparent; padding: 0; color: #fff; text-align: left; cursor: pointer; }
+.film-cover { display: block; position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #090909; border: 1px solid #202025; }
+.film-cover img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform .7s ease; }
+.film-open { position: absolute; right: 1.2rem; bottom: 1.1rem; font: 400 .55rem 'Montserrat', sans-serif; letter-spacing: .15em; padding: .6rem .8rem; background: rgba(0,0,0,.65); }
+.film-card:hover .film-cover img { transform: scale(1.025); }
+.film-card:focus-visible, .film-scroll:focus-visible { outline: 1px solid #eee; outline-offset: 6px; }
+.film-card-meta { display: flex; justify-content: space-between; width: 100%; margin-top: 1.3rem; color: #909095; font: 400 .55rem 'Montserrat', sans-serif; letter-spacing: .2em; }
+.film-card-title { font-size: 1.08rem; font-weight: 400; letter-spacing: -.025em; line-height: 1.6; margin: .7rem 0 .35rem; }
+.film-role { color: #909095; font: 300 .6rem 'Montserrat', sans-serif; letter-spacing: .1em; }
+.film-controls { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding-right: 6.5rem; margin-top: 1rem; }
+.film-scroll-note { color: #909095; font: 300 .55rem 'Montserrat', sans-serif; letter-spacing: .13em; }
+.film-controls > div { display: flex; gap: .6rem; }
+.lightbox { overflow-y: auto; }
+.lightbox.film-view { padding-top: 5rem; padding-bottom: 1.5rem; }
+.film-view .lightbox-img-wrapper { flex-shrink: 0; }
+.film-view .lightbox-gallery img { height: min(37svh, 340px); width: auto; max-width: 85vw; object-fit: contain; }
+.film-view .lightbox-caption { font-family: 'Noto Sans KR', sans-serif; color: #eee; font-weight: 400; font-size: clamp(.95rem, 2vw, 1.25rem); margin-top: 1.1rem; }
+.film-details { width: min(92vw, 960px); margin-top: 1rem; }
+.film-details[hidden] { display: none; }
+.film-specs { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem 1.5rem; margin: 0; }
+.film-specs > div { min-width: 0; }
+.film-specs dt { font: 400 .5rem 'Montserrat', sans-serif; letter-spacing: .16em; color: #909095; margin-bottom: .3rem; }
+.film-specs dd { margin: 0; color: #ccc; font-size: .65rem; line-height: 1.5; font-weight: 300; }
+.film-links { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; margin-top: 1rem; }
+.film-links:empty { display: none; }
+.film-links a { color: #eee; text-decoration: none; border-bottom: 1px solid #777; padding: .5rem .2rem; font: 400 .6rem 'Montserrat', sans-serif; letter-spacing: .16em; }
+.film-links a:focus-visible { outline: 1px solid #fff; outline-offset: 4px; }
+@media (max-width: 1024px) {
+  .film-section { padding-left: 4rem; }
+  .film-controls { padding-right: 4rem; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: flex; gap: 1rem; }
+  .nav-links a { font-size: .52rem; letter-spacing: .1em; }
+  .film-section { padding: 6rem 0 6rem 1.5rem; }
+  .film-track { gap: 20px; }
+  .film-card { width: 280px; flex-basis: 280px; }
+  .film-card-title { font-size: .95rem; }
+  .film-controls { padding-right: 1.5rem; }
+  .film-scroll-note { font-size: .45rem; max-width: 150px; line-height: 1.8; }
+  .film-specs { grid-template-columns: repeat(2, 1fr); gap: .65rem 1rem; }
+  .film-view .lightbox-close { top: 1rem; right: 1rem; }
+  .film-view .lightbox-gallery img { height: min(29svh, 260px); }
+  .film-view .lightbox-caption { margin-top: .8rem; }
+  .film-details { width: 100%; }
+  .film-view .gallery-navigation { margin-top: .7rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .film-grain { animation: none; }
+  .film-cover img { transition: none; }
+}
+
 </style>
 </head>
 <body>
@@ -393,7 +452,8 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
     <a href="#landing" class="nav-logo">메아리</a>
   </div>
   <ul class="nav-links">
-    <li><a href="#exhibition">Collection</a></li>
+    <li><a href="#exhibition">Photo</a></li>
+    <li><a href="#film">Film</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -409,7 +469,7 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
     </div>
      
     <div class="manifesto-box">
-      <p class="brand-sub">현상되지 않은 &nbsp;/&nbsp; Film Photography</p>
+      <p class="brand-sub">Photography &amp; Film</p>
     </div>
   </div>
 </section>
@@ -418,8 +478,8 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
 
 <section id="exhibition">
   <div class="ex-header">
-    <div class="ex-title">Selected Works</div>
-    <div class="ex-note">Renaissance Shape<br>Awaiting Development — VOL. 01</div>
+    <h2 class="ex-title">Photography</h2>
+    <div class="ex-note">Portrait Series<br>02 Collections</div>
   </div>
 
   <div class="scroll-wrapper" id="scrollWrapper">
@@ -446,46 +506,78 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
         <div class="series-label"><span>HAN TENGYA</span><span>05 / VIEW SERIES ↗</span></div>
       </div>
 
-      <div class="frame" onclick="openDetail('2026.07')">
-        <div class="frame-top-meta"><span class="frame-index">IDX-003</span><span class="frame-date">2026.07</span></div>
-        <div class="frame-img-container">
-          <span class="frame-placeholder-view">Awaiting Development</span>
-        </div>
-        <div class="frame-bottom-meta">
-          <div class="frame-coord">Actor 03</div>
-        </div>
-      </div>
+
        
-      <div class="frame" onclick="openDetail('2026.07')">
-        <div class="frame-top-meta"><span class="frame-index">IDX-004</span><span class="frame-date">2026.07</span></div>
-        <div class="frame-img-container">
-          <span class="frame-placeholder-view">Awaiting Development</span>
-        </div>
-        <div class="frame-bottom-meta">
-          <div class="frame-coord">Actor 04</div>
-        </div>
-      </div>
+
        
-      <div class="frame" onclick="openDetail('2026.07')">
-        <div class="frame-top-meta"><span class="frame-index">IDX-005</span><span class="frame-date">2026.07</span></div>
-        <div class="frame-img-container">
-          <span class="frame-placeholder-view">Awaiting Development</span>
-        </div>
-        <div class="frame-bottom-meta">
-          <div class="frame-coord">Actor 05</div>
-        </div>
-      </div>
+
        
-      <div class="frame" onclick="openDetail('2026.07')">
-        <div class="frame-top-meta"><span class="frame-index">IDX-006</span><span class="frame-date">2026.07</span></div>
-        <div class="frame-img-container">
-          <span class="frame-placeholder-view">Awaiting Development</span>
-        </div>
-        <div class="frame-bottom-meta">
-          <div class="frame-coord">Actor 06</div>
-        </div>
-      </div>
+
     </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+<section id="film" class="film-section" aria-labelledby="filmHeading">
+  <div class="ex-header">
+    <h2 class="ex-title" id="filmHeading">Selected Films</h2>
+    <div class="ex-note">KIM MINSUNG<br>Director of Photography / 08 Projects</div>
+  </div>
+  <div class="scroll-wrapper film-scroll" id="filmScroll" tabindex="0" role="region" aria-label="영상 작품 목록, 옆으로 스크롤">
+    <div class="film-track">
+      <button class="film-card" type="button" onclick="openFilm(0)" aria-label="이처럼 사랑하사 작품 보기">
+        <span class="film-cover"><img src="film-01-01.png" alt="이처럼 사랑하사 대표 스틸" loading="lazy" decoding="async"><span class="film-open" aria-hidden="true">VIEW PROJECT ↗</span></span>
+        <span class="film-card-meta"><span>FILM / 01</span><span>2021</span></span>
+        <span class="film-card-title">이처럼 사랑하사</span>
+        <span class="film-role">Cinematographer</span>
+      </button>
+      <button class="film-card" type="button" onclick="openFilm(1)" aria-label="쉼표 작품 보기">
+        <span class="film-cover"><img src="film-02-01.png" alt="쉼표 대표 스틸" loading="lazy" decoding="async"><span class="film-open" aria-hidden="true">VIEW PROJECT ↗</span></span>
+        <span class="film-card-meta"><span>FILM / 02</span><span>2023</span></span>
+        <span class="film-card-title">쉼표</span>
+        <span class="film-role">DOP</span>
+      </button>
+      <button class="film-card" type="button" onclick="openFilm(2)" aria-label="채집자 작품 보기">
+        <span class="film-cover"><img src="film-03-01.png" alt="채집자 대표 스틸" loading="lazy" decoding="async"><span class="film-open" aria-hidden="true">VIEW PROJECT ↗</span></span>
+        <span class="film-card-meta"><span>FILM / 03</span><span>2024</span></span>
+        <span class="film-card-title">채집자</span>
+        <span class="film-role">Cinematographer</span>
+      </button>
+      <button class="film-card" type="button" onclick="openFilm(3)" aria-label="WHAT’S IN MY BOX 작품 보기">
+        <span class="film-cover"><img src="film-04-01.png" alt="WHAT’S IN MY BOX 대표 스틸" loading="lazy" decoding="async"><span class="film-open" aria-hidden="true">VIEW PROJECT ↗</span></span>
+        <span class="film-card-meta"><span>FILM / 04</span><span>2022</span></span>
+        <span class="film-card-title">WHAT’S IN MY BOX</span>
+        <span class="film-role">Cinematographer</span>
+      </button>
+      <button class="film-card" type="button" onclick="openFilm(4)" aria-label="행복을 살 수 있는 가게가 있나요? 작품 보기">
+        <span class="film-cover"><img src="film-05-01.png" alt="행복을 살 수 있는 가게가 있나요? 대표 스틸" loading="lazy" decoding="async"><span class="film-open" aria-hidden="true">VIEW PROJECT ↗</span></span>
+        <span class="film-card-meta"><span>FILM / 05</span><span>2022</span></span>
+        <span class="film-card-title">행복을 살 수 있는 가게가 있나요?</span>
+        <span class="film-role">Cinematographer</span>
+      </button>
+      <button class="film-card" type="button" onclick="openFilm(5)" aria-label="30에 멈춘 인공위성 작품 보기">
+        <span class="film-cover"><img src="film-06-01.png" alt="30에 멈춘 인공위성 대표 스틸" loading="lazy" decoding="async"><span class="film-open" aria-hidden="true">VIEW PROJECT ↗</span></span>
+        <span class="film-card-meta"><span>FILM / 06</span><span>2022</span></span>
+        <span class="film-card-title">30에 멈춘 인공위성</span>
+        <span class="film-role">DOP</span>
+      </button>
+      <button class="film-card" type="button" onclick="openFilm(6)" aria-label="하지 않은 죄 작품 보기">
+        <span class="film-cover"><img src="film-07-01.png" alt="하지 않은 죄 대표 스틸" loading="lazy" decoding="async"><span class="film-open" aria-hidden="true">VIEW PROJECT ↗</span></span>
+        <span class="film-card-meta"><span>FILM / 07</span><span>2023</span></span>
+        <span class="film-card-title">하지 않은 죄</span>
+        <span class="film-role">Cinematographer</span>
+      </button>
+      <button class="film-card" type="button" onclick="openFilm(7)" aria-label="PIP ROOM 작품 보기">
+        <span class="film-cover"><img src="film-08-01.png" alt="PIP ROOM 대표 스틸" loading="lazy" decoding="async"><span class="film-open" aria-hidden="true">VIEW PROJECT ↗</span></span>
+        <span class="film-card-meta"><span>FILM / 08</span><span>2023</span></span>
+        <span class="film-card-title">PIP ROOM</span>
+        <span class="film-role">Cinematographer</span>
+      </button>
+    </div>
+  </div>
+  <div class="film-controls">
+    <span class="film-scroll-note">SCROLL TO EXPLORE / 08 PROJECTS</span>
+    <div><button class="gallery-step" type="button" aria-label="이전 영상 작품" onclick="scrollFilmProjects(-1)">←</button><button class="gallery-step" type="button" aria-label="다음 영상 작품" onclick="scrollFilmProjects(1)">→</button></div>
   </div>
 </section>
 
@@ -500,9 +592,13 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
       <img src="https://i.ibb.co/qLph6dFz/for-upolad-5.jpg" alt="KIM SUMIN Work 5">
       <img src="https://i.ibb.co/LX1BJ876/for-upolad-6.jpg" alt="KIM SUMIN Work 6">
     </div>
-    <span class="lightbox-placeholder-text" id="lightboxPlaceholder">Image Archive Locked</span>
+    <span class="lightbox-placeholder-text" id="lightboxPlaceholder"></span>
   </div>
   <div class="lightbox-caption" id="lightboxCaption"></div>
+  <div class="film-details" id="filmDetails" hidden onclick="event.stopPropagation()">
+    <dl class="film-specs" id="filmSpecs"></dl>
+    <div class="film-links" id="filmLinks"></div>
+  </div>
   <div class="gallery-navigation" id="galleryNavigation" hidden onclick="event.stopPropagation()">
     <button type="button" class="gallery-step" aria-label="이전 사진" onclick="scrollGallery(-1)">←</button>
     <span class="gallery-hint">SCROLL TO EXPLORE</span>
@@ -514,9 +610,9 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
 
 <section id="contact">
   <div class="contact-head">CONTACT</div>
-  <div class="contact-line"><span class="c-type">Instagram</span><a href="https://instagram.com/latentreel" class="c-val" target="_blank">@latentreel</a></div>
+  <div class="contact-line"><span class="c-type">Phone</span><a href="tel:01036610792" class="c-val">010-3661-0792</a></div>
   <div class="contact-line"><span class="c-type">Email</span><a href="mailto:ksoo1kms@gmail.com" class="c-val">ksoo1kms@gmail.com</a></div>
-  <div class="contact-line"><span class="c-type">Studio Base</span><span class="c-val">Seoul, South Korea</span></div>
+  <div class="contact-line"><span class="c-type">Studio Base</span><span class="c-val">고양시 향동동 469, 702호</span></div>
 </section>
 
 <footer>
@@ -546,7 +642,7 @@ if (cursor && window.matchMedia('(min-width: 1025px)').matches) {
     cursor.style.top = e.clientY + 'px';
   });
 
-  document.querySelectorAll('a, .frame, .lightbox-close').forEach(el => {
+  document.querySelectorAll('a, button, .frame, .lightbox-close').forEach(el => {
     el.addEventListener('mouseenter', () => { 
       cursor.style.width = '28px'; 
       cursor.style.height = '28px'; 
@@ -634,6 +730,7 @@ function activateLightbox() {
 }
 
 function openGallery(date, series = 'actor01') {
+  resetFilmView();
   const isHanTengya = series === 'han-tengya';
   document.getElementById('lightboxCaption').textContent = isHanTengya
     ? 'HAN TENGYA / 05 PHOTOGRAPHS'
@@ -665,6 +762,7 @@ function scrollGallery(direction) {
 }
 
 function openDetail(date) {
+  resetFilmView();
   document.getElementById('lightboxCaption').textContent = date;
   galleryElement.classList.add('hidden');
   document.getElementById('lightboxPlaceholder').classList.remove('hidden');
@@ -688,13 +786,68 @@ document.addEventListener('keydown', (event) => {
   if (event.key === 'ArrowRight') { event.preventDefault(); scrollGallery(1); }
   if (event.key === 'ArrowLeft') { event.preventDefault(); scrollGallery(-1); }
   if (event.key === 'Tab') {
-    const buttons = Array.from(lightbox.querySelectorAll('button')).filter(button => !button.closest('[hidden]'));
+    const buttons = Array.from(lightbox.querySelectorAll('button, a[href]')).filter(button => !button.closest('[hidden]'));
     const first = buttons[0];
     const last = buttons[buttons.length - 1];
     if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
     else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
   }
 });
+
+const filmProjects = [{"title": "이처럼 사랑하사", "year": "2021", "role": "Cinematographer", "camera": "RED RAVEN", "lens": "SAMYANG XEEN PRIME LENS", "runtime": "15m 46s", "aspect": "2.35 : 1", "images": ["film-01-01.png", "film-01-02.png", "film-01-03.png", "film-01-04.png", "film-01-05.png", "film-01-06.png", "film-01-07.png", "film-01-08.png", "film-01-09.png", "film-01-10.png", "film-01-11.png", "film-01-12.png", "film-01-13.png", "film-01-14.png", "film-01-15.png"], "links": ["https://www.youtube.com/watch?v=-7sAqnrP4Ks"], "source": "https://readymag.website/u3475479343/6254491/3/"}, {"title": "쉼표", "year": "2023", "role": "DOP", "camera": "SONY FX3", "lens": "SAMYANG XEEN PRIME LENS", "runtime": "9m 36s", "aspect": "2.35 : 1", "images": ["film-02-01.png", "film-02-02.png", "film-02-03.png", "film-02-04.png", "film-02-05.png", "film-02-06.png", "film-02-07.png", "film-02-08.png", "film-02-09.png", "film-02-10.png", "film-02-11.png", "film-02-12.png", "film-02-13.png"], "links": ["https://www.youtube.com/watch?app=desktop&si=mq3ZLDBf_NJUNMYh&v=DeKMj2PeUag&feature=youtu.be"], "source": "https://readymag.website/u3475479343/6254491/2/"}, {"title": "채집자", "year": "2024", "role": "Cinematographer", "camera": "SONY A7S3", "lens": "BLAZAR REMUS LENS", "runtime": "", "aspect": "2.35 : 1", "images": ["film-03-01.png", "film-03-02.png", "film-03-03.png", "film-03-04.png", "film-03-05.png", "film-03-06.png", "film-03-07.png", "film-03-08.png", "film-03-09.png", "film-03-10.png", "film-03-11.png", "film-03-12.png", "film-03-13.png", "film-03-14.png", "film-03-15.png"], "links": ["https://youtu.be/979feml7SyU?si=QFlbTm_YdnbITRm1"], "source": "https://readymag.website/u3475479343/6254491/7/"}, {"title": "WHAT’S IN MY BOX", "year": "2022", "role": "Cinematographer", "camera": "RED GEMINI", "lens": "ZEISS CP.2", "runtime": "", "aspect": "2.35 : 1", "images": ["film-04-01.png", "film-04-02.png", "film-04-03.png", "film-04-04.png", "film-04-05.png", "film-04-06.png", "film-04-07.png", "film-04-08.png", "film-04-09.png", "film-04-10.png", "film-04-11.png", "film-04-12.png", "film-04-13.png"], "links": [], "source": "https://readymag.website/u3475479343/6254491/5/"}, {"title": "행복을 살 수 있는 가게가 있나요?", "year": "2022", "role": "Cinematographer", "camera": "BMPCC 6K PRO", "lens": "SIGMA CINE ZOOM LENS", "runtime": "14m 12s", "aspect": "2.35 : 1", "images": ["film-05-01.png", "film-05-02.png", "film-05-03.png", "film-05-04.png", "film-05-05.png", "film-05-06.png", "film-05-07.png", "film-05-08.png", "film-05-09.png", "film-05-10.png", "film-05-11.png", "film-05-12.png", "film-05-13.png", "film-05-14.png", "film-05-15.png"], "links": ["https://youtu.be/FaW6DjDpJxI?si=Ux-G92f4cHlkEOBg"], "source": "https://readymag.website/u3475479343/6254491/6/"}, {"title": "30에 멈춘 인공위성", "year": "2022", "role": "DOP", "camera": "RED KOMODO", "lens": "CANON CN-E PRIME LENS", "runtime": "14m 12s", "aspect": "2.35 : 1", "images": ["film-06-01.png", "film-06-02.png", "film-06-03.png", "film-06-04.png", "film-06-05.png", "film-06-06.png", "film-06-07.png", "film-06-08.png", "film-06-09.png", "film-06-10.png", "film-06-11.png", "film-06-12.png", "film-06-13.png"], "links": ["https://youtu.be/nECSH0Ts6E8?si=flvpN0cUFH9ddp5b"], "source": "https://readymag.website/u3475479343/6254491/4/"}, {"title": "하지 않은 죄", "year": "2023", "role": "Cinematographer", "camera": "SONY A7S3", "lens": "ZEISS SONNAR FE", "runtime": "8m 50s", "aspect": "2.35 : 1", "images": ["film-07-01.png", "film-07-02.png", "film-07-03.png", "film-07-04.png", "film-07-05.png", "film-07-06.png", "film-07-07.png", "film-07-08.png", "film-07-09.png"], "links": ["https://youtu.be/jpgvbeNGtA8?si=-4d2Gt9vh-OCm9nF"], "source": "https://readymag.website/u3475479343/6254491/9/"}, {"title": "PIP ROOM", "year": "2023", "role": "Cinematographer", "camera": "SONY A7S3", "lens": "ZEISS SONNAR FE", "runtime": "57s / 60s", "aspect": "3 : 4", "images": ["film-08-01.png", "film-08-02.png", "film-08-03.png", "film-08-04.png", "film-08-05.png", "film-08-06.png", "film-08-07.png", "film-08-08.png", "film-08-09.png", "film-08-10.png"], "links": ["https://youtu.be/xtRmK6qAYlA?si=N7NyNNQHuA0bXiTz", "https://youtu.be/zYfCm69yg3E?si=rRHFJN1tcK2NQsDz"], "source": "https://readymag.website/u3475479343/6254491/8/"}];
+
+function resetFilmView() {
+  document.getElementById('lightbox').classList.remove('film-view');
+  document.getElementById('filmDetails').hidden = true;
+}
+
+function openFilm(index) {
+  const project = filmProjects[index];
+  if (!project) return;
+  const lightbox = document.getElementById('lightbox');
+  lightbox.classList.add('film-view');
+  document.getElementById('lightboxCaption').textContent = project.title;
+  galleryElement.replaceChildren(...project.images.map((source, number) => {
+    const image = document.createElement('img');
+    image.src = source;
+    image.alt = project.title + ' — 스틸 ' + String(number + 1).padStart(2, '0');
+    image.decoding = 'async';
+    return image;
+  }));
+  galleryElement.classList.remove('hidden');
+  galleryElement.scrollLeft = 0;
+  document.getElementById('lightboxPlaceholder').classList.add('hidden');
+  document.getElementById('galleryNavigation').hidden = false;
+  const specs = [['YEAR', project.year], ['ROLE', project.role], ['CAMERA', project.camera], ['OPTICS', project.lens], ['RUNNING TIME', project.runtime], ['FORMAT', project.aspect]];
+  document.getElementById('filmSpecs').replaceChildren(...specs.filter(([, value]) => value).map(([label, value]) => {
+    const group = document.createElement('div');
+    const term = document.createElement('dt');
+    const detail = document.createElement('dd');
+    term.textContent = label;
+    detail.textContent = value;
+    group.append(term, detail);
+    return group;
+  }));
+  document.getElementById('filmLinks').replaceChildren(...project.links.map((url, number) => {
+    const link = document.createElement('a');
+    link.href = url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.textContent = 'WATCH FILM' + (project.links.length > 1 ? ' ' + String(number + 1).padStart(2, '0') : '') + ' ↗';
+    link.setAttribute('aria-label', project.title + ' 영상 보기' + (project.links.length > 1 ? ' ' + (number + 1) : ''));
+    return link;
+  }));
+  document.getElementById('filmDetails').hidden = false;
+  activateLightbox();
+}
+
+function scrollFilmProjects(direction) {
+  const track = document.getElementById('filmScroll');
+  const card = track.querySelector('.film-card');
+  const gap = parseFloat(getComputedStyle(track.querySelector('.film-track')).gap) || 0;
+  track.scrollBy({ left: direction * (card.getBoundingClientRect().width + gap), behavior: 'smooth' });
+}
+
 </script>
 
 </body>
