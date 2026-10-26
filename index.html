@@ -347,6 +347,32 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
   .lightbox-gallery img { width: 78vw; height: 78vw; }
   .lightbox-caption { font-size: 0.95rem; margin-top: 1.5rem; }
 }
+
+/* HAN TENGYA — additional portrait series */
+.han-series { cursor: pointer; }
+.han-series:focus-visible { outline: 2px solid #fff; outline-offset: 5px; }
+.series-label {
+  position: absolute; inset: auto 0 0; z-index: 6;
+  display: flex; justify-content: space-between; align-items: end; gap: 1rem;
+  padding: 3rem 1.4rem 1.2rem;
+  background: linear-gradient(transparent, rgba(0,0,0,.75));
+  color: #fff; font: 400 .6rem 'Montserrat', sans-serif; letter-spacing: .15em;
+  pointer-events: none;
+}
+.series-label span:last-child { font-size: .48rem; white-space: nowrap; }
+.lightbox-close { border: 0; background: transparent; padding: .75rem; cursor: pointer; }
+.lightbox-close:focus-visible, .gallery-step:focus-visible { outline: 1px solid #fff; outline-offset: 4px; }
+.lightbox-gallery img { object-fit: contain; }
+.gallery-navigation { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-top: 1rem; }
+.gallery-navigation[hidden] { display: none; }
+.gallery-step { border: 1px solid #303035; background: transparent; color: #ddd; min-width: 44px; min-height: 44px; font-size: 1rem; cursor: pointer; }
+.gallery-hint { color: #909095; font: 300 .55rem 'Montserrat', sans-serif; letter-spacing: .15em; }
+@media (max-height: 600px) {
+  .lightbox-gallery img { width: min(46vh, 420px); height: min(46vh, 420px); }
+  .lightbox-close { top: .5rem; right: 1rem; }
+  .lightbox-caption { margin-top: .75rem; }
+  .gallery-navigation { margin-top: .5rem; }
+}
 </style>
 </head>
 <body>
@@ -403,16 +429,17 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
         </div>
       </div>
        
-      <div class="frame" onclick="openDetail('2026.07')">
-        <div class="frame-top-meta"><span class="frame-index">IDX-002</span><span class="frame-date">2026.07</span></div>
+      <div class="frame has-image han-series" role="button" tabindex="0"
+           aria-label="HAN TENGYA 시리즈 사진 5장 보기"
+           onclick="openGallery('', 'han-tengya')"
+           onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openGallery('', 'han-tengya'); }">
+        <div class="frame-top-meta"><span class="frame-index">IDX-002</span><span class="frame-date">05 PHOTOGRAPHS</span></div>
         <div class="frame-img-container">
-          <span class="frame-placeholder-view">Awaiting Development</span>
+          <img src="han-tengya-001.jpg" alt="HAN TENGYA — 검은 의상, 컬러 포트레이트" width="1000" height="1000" loading="lazy">
         </div>
-        <div class="frame-bottom-meta">
-          <div class="frame-coord">Actor 02</div>
-        </div>
+        <div class="series-label"><span>HAN TENGYA</span><span>05 / VIEW SERIES ↗</span></div>
       </div>
-       
+
       <div class="frame" onclick="openDetail('2026.07')">
         <div class="frame-top-meta"><span class="frame-index">IDX-003</span><span class="frame-date">2026.07</span></div>
         <div class="frame-img-container">
@@ -456,8 +483,8 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
   </div>
 </section>
 
-<div class="lightbox" id="lightbox" onclick="closeDetail()">
-  <div class="lightbox-close">Close —</div>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightboxCaption" aria-hidden="true" inert onclick="closeDetail()">
+  <button type="button" class="lightbox-close" aria-label="사진 닫기">Close —</button>
   <div class="lightbox-img-wrapper" onclick="event.stopPropagation()">
     <div class="lightbox-gallery hidden" id="lightboxGallery">
       <img src="https://i.ibb.co/cSBdGWRr/for-upolad-1.jpg" alt="Actor 01 Work 1">
@@ -470,6 +497,11 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
     <span class="lightbox-placeholder-text" id="lightboxPlaceholder">Image Archive Locked</span>
   </div>
   <div class="lightbox-caption" id="lightboxCaption"></div>
+  <div class="gallery-navigation" id="galleryNavigation" hidden onclick="event.stopPropagation()">
+    <button type="button" class="gallery-step" aria-label="이전 사진" onclick="scrollGallery(-1)">←</button>
+    <span class="gallery-hint">SCROLL TO EXPLORE</span>
+    <button type="button" class="gallery-step" aria-label="다음 사진" onclick="scrollGallery(1)">→</button>
+  </div>
 </div>
 
 <div class="divider"></div>
@@ -571,28 +603,92 @@ const io = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.ex-title, .ex-note, .frames-grid, .contact-head, .contact-line').forEach(el => io.observe(el));
 
-function openGallery(date) {
-  document.getElementById('lightboxCaption').textContent = date + ' / Actor 01';
-  const gallery = document.getElementById('lightboxGallery');
-  const lightboxPlaceholder = document.getElementById('lightboxPlaceholder');
+// Keep the original collection independent from the new series.
+const galleryElement = document.getElementById('lightboxGallery');
+const originalGalleryMarkup = galleryElement.innerHTML;
+const hanTengyaImages = [
+  ['001', '검은 의상, 컬러 포트레이트'],
+  ['004', '흰 셔츠, 앉아 있는 흑백 포트레이트'],
+  ['008', '부드러운 초점의 흑백 포트레이트'],
+  ['012', '앉은 자세와 긴 그림자, 흑백 포트레이트'],
+  ['014', '옆모습과 움직임, 흑백 포트레이트']
+];
+let galleryTrigger = null;
+let previousBodyOverflow = '';
 
-  gallery.classList.remove('hidden');
-  gallery.scrollLeft = 0;
-  lightboxPlaceholder.classList.add('hidden');
-  document.getElementById('lightbox').classList.add('active');
+function activateLightbox() {
+  const lightbox = document.getElementById('lightbox');
+  galleryTrigger = document.activeElement;
+  previousBodyOverflow = document.body.style.overflow;
+  document.body.style.overflow = 'hidden';
+  lightbox.inert = false;
+  lightbox.setAttribute('aria-hidden', 'false');
+  lightbox.classList.add('active');
+  lightbox.querySelector('.lightbox-close').focus({ preventScroll: true });
+}
+
+function openGallery(date, series = 'actor01') {
+  const isHanTengya = series === 'han-tengya';
+  document.getElementById('lightboxCaption').textContent = isHanTengya
+    ? 'HAN TENGYA / 05 PHOTOGRAPHS'
+    : date + ' / Actor 01';
+  if (isHanTengya) {
+    galleryElement.replaceChildren(...hanTengyaImages.map(([number, description]) => {
+      const img = document.createElement('img');
+      img.src = 'han-tengya-' + number + '.jpg';
+      img.alt = 'HAN TENGYA ' + number + ' — ' + description;
+      img.width = 1000;
+      img.height = 1000;
+      return img;
+    }));
+  } else {
+    galleryElement.innerHTML = originalGalleryMarkup;
+  }
+  galleryElement.classList.remove('hidden');
+  galleryElement.scrollLeft = 0;
+  document.getElementById('lightboxPlaceholder').classList.add('hidden');
+  document.getElementById('galleryNavigation').hidden = false;
+  activateLightbox();
+}
+
+function scrollGallery(direction) {
+  const firstImage = galleryElement.querySelector('img');
+  if (!firstImage) return;
+  const gap = parseFloat(getComputedStyle(galleryElement).gap) || 0;
+  galleryElement.scrollBy({ left: direction * (firstImage.getBoundingClientRect().width + gap), behavior: 'smooth' });
 }
 
 function openDetail(date) {
   document.getElementById('lightboxCaption').textContent = date;
-  const gallery = document.getElementById('lightboxGallery');
-  const lightboxPlaceholder = document.getElementById('lightboxPlaceholder');
-
-  gallery.classList.add('hidden');
-  lightboxPlaceholder.classList.remove('hidden');
-  document.getElementById('lightbox').classList.add('active');
+  galleryElement.classList.add('hidden');
+  document.getElementById('lightboxPlaceholder').classList.remove('hidden');
+  document.getElementById('galleryNavigation').hidden = true;
+  activateLightbox();
 }
 
-function closeDetail() { document.getElementById('lightbox').classList.remove('active'); }
+function closeDetail() {
+  const lightbox = document.getElementById('lightbox');
+  lightbox.classList.remove('active');
+  lightbox.inert = true;
+  lightbox.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = previousBodyOverflow;
+  if (galleryTrigger && galleryTrigger.isConnected) galleryTrigger.focus({ preventScroll: true });
+}
+
+document.addEventListener('keydown', (event) => {
+  const lightbox = document.getElementById('lightbox');
+  if (!lightbox.classList.contains('active')) return;
+  if (event.key === 'Escape') closeDetail();
+  if (event.key === 'ArrowRight') { event.preventDefault(); scrollGallery(1); }
+  if (event.key === 'ArrowLeft') { event.preventDefault(); scrollGallery(-1); }
+  if (event.key === 'Tab') {
+    const buttons = Array.from(lightbox.querySelectorAll('button')).filter(button => !button.closest('[hidden]'));
+    const first = buttons[0];
+    const last = buttons[buttons.length - 1];
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+  }
+});
 </script>
 
 </body>
