@@ -6,7 +6,7 @@
 <title>메아리</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Montserrat:wght@100;200;300;400;500;600;700&family=Noto+Sans+KR:wght@600;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Montserrat:wght@100;200;300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;800;900&display=swap" rel="stylesheet">
 <style>
 /* 강제 최상단 시작을 위한 초기 스타일 보정 및 스크롤 연동 끊김 방지 */
 html, body { margin: 0; padding: 0; background: #000000; width: 100%; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
@@ -437,6 +437,66 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
   .film-cover img { transition: none; }
 }
 
+
+/* Profile — a typographic credit ledger within the existing archive. */
+#profile, #film, #exhibition, #contact { scroll-margin-top: 7rem; }
+.profile-section { position: relative; z-index: 2; padding: 11rem 6.5rem 9rem; }
+.profile-header { padding-right: 0; margin-bottom: 2rem; }
+.profile-intro { margin: 0 0 5rem; color: #b9b9be; font: 400 clamp(.9rem, 1.4vw, 1.1rem)/1.9 'Noto Sans KR', sans-serif; letter-spacing: -.025em; }
+.profile-group { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 3.5rem; padding: 3.5rem 0; border-top: 1px solid #25252a; }
+.profile-group-heading h3 { margin: .85rem 0 0; color: #eee; font: 400 1.05rem/1.6 'Noto Sans KR', sans-serif; letter-spacing: -.025em; }
+.profile-number { color: #96969d; font: 400 .53rem 'Montserrat', sans-serif; letter-spacing: .15em; }
+.profile-records, .credit-list, .profile-qualifications { list-style: none; padding: 0; margin: 0; }
+.profile-record { display: flex; justify-content: space-between; gap: 2rem; padding: 1.8rem 0; border-bottom: 1px solid #18181c; }
+.profile-record:first-child { padding-top: 0; }
+.profile-record:last-child { border-bottom: 0; padding-bottom: 0; }
+.profile-record h4 { margin: 0; font: 400 1rem/1.7 'Noto Sans KR', sans-serif; color: #efeff1; letter-spacing: -.025em; }
+.profile-record p { margin: .4rem 0 0; font: 400 .78rem/1.8 'Noto Sans KR', sans-serif; color: #b1b1b8; letter-spacing: -.015em; }
+.profile-record p.profile-description { margin-top: .9rem; color: #96969d; }
+.profile-state { color: #aaaab1; font: 400 .75rem/1.8 'Noto Sans KR', sans-serif; white-space: nowrap; padding-top: .25rem; }
+.profile-year { color: #aaaab1; font: 400 .65rem/2 'Montserrat', sans-serif; white-space: nowrap; padding-top: .3rem; letter-spacing: .06em; }
+.credit-category + .credit-category { margin-top: 3rem; }
+.credit-category-heading { display: flex; align-items: center; flex-wrap: wrap; gap: .8rem; margin: 0 0 .8rem; font: 500 .75rem/1.8 'Noto Sans KR', sans-serif; color: #d5d5da; }
+.credit-category-heading span { font: 400 .46rem 'Montserrat', sans-serif; color: #8a8a93; letter-spacing: .12em; }
+.credit-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2rem; padding: 1.3rem 0; border-top: 1px solid #1b1b20; }
+.credit-title { margin: 0; font: 400 .9rem/1.9 'Noto Sans KR', sans-serif; color: #efeff1; letter-spacing: -.025em; overflow-wrap: anywhere; }
+.credit-role { margin: .3rem 0 0; font: 400 .73rem/1.8 'Noto Sans KR', sans-serif; color: #b0b0b8; }
+.credit-note { margin: .4rem 0 0; font: 400 .68rem/1.9 'Noto Sans KR', sans-serif; color: #92929c; }
+.credit-date { display: flex; flex-direction: column; align-items: flex-end; gap: .6rem; padding-top: .3rem; color: #aaaab1; font: 400 .62rem/1.8 'Montserrat', sans-serif; letter-spacing: .06em; white-space: nowrap; }
+.credit-status { border: 1px solid #38383f; padding: .15rem .45rem; color: #c8c8ce; font: 400 .6rem/1.6 'Noto Sans KR', sans-serif; letter-spacing: 0; }
+.profile-qualifications li { padding: 1.2rem 0; border-bottom: 1px solid #1b1b20; }
+.profile-qualifications li:first-child { padding-top: 0; }
+.profile-qualifications li:last-child { padding-bottom: 0; border-bottom: 0; }
+.qualification-type { font: 400 .5rem 'Montserrat', sans-serif; letter-spacing: .14em; color: #92929c; }
+.profile-qualifications p { margin: .55rem 0 0; font: 400 .82rem/1.9 'Noto Sans KR', sans-serif; letter-spacing: -.02em; color: #dedee3; }
+@media (max-width: 1024px) {
+  .profile-section { padding-left: 4rem; padding-right: 4rem; }
+  .profile-group { grid-template-columns: 150px minmax(0, 1fr); gap: 2rem; }
+  .nav-links { gap: 2rem; }
+}
+@media (max-width: 768px) {
+  #profile, #film, #exhibition, #contact { scroll-margin-top: 4rem; }
+  .profile-section { padding: 6rem 1.5rem 4rem; }
+  .profile-header { gap: 1.2rem; margin-bottom: 1.8rem; }
+  .profile-header .ex-title { font-size: 2rem; }
+  .profile-intro { margin-bottom: 3rem; font-size: .8rem; }
+  .profile-group { grid-template-columns: 1fr; gap: 1.8rem; padding: 2.5rem 0; }
+  .profile-group-heading h3 { font-size: 1rem; margin-top: .6rem; }
+  .profile-record { gap: 1rem; }
+  .profile-record h4 { font-size: .85rem; }
+  .profile-record p { font-size: .72rem; }
+  .profile-year { font-size: .52rem; }
+  .profile-state { font-size: .65rem; }
+  .credit-row { grid-template-columns: 1fr; gap: .55rem; padding: 1.2rem 0; }
+  .credit-date { flex-direction: row; align-items: center; padding-top: 0; font-size: .55rem; }
+  .credit-title { font-size: .83rem; }
+  .credit-role { font-size: .7rem; }
+  .credit-note { font-size: .65rem; }
+  .profile-qualifications p { font-size: .76rem; }
+  .nav-links { gap: .75rem; }
+  .nav-links a { font-size: .5rem; letter-spacing: .06em; }
+}
+
 </style>
 </head>
 <body>
@@ -454,6 +514,7 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
   <ul class="nav-links">
     <li><a href="#exhibition">Photo</a></li>
     <li><a href="#film">Film</a></li>
+    <li><a href="#profile">Profile</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -605,6 +666,121 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
     <button type="button" class="gallery-step" aria-label="다음 사진" onclick="scrollGallery(1)">→</button>
   </div>
 </div>
+
+<div class="divider"></div>
+
+<section id="profile" class="profile-section" aria-labelledby="profileHeading">
+  <div class="ex-header profile-header">
+    <h2 class="ex-title" id="profileHeading">Profile &amp; Credits</h2>
+    <div class="ex-note">KIM MINSUNG<br>Director of Photography</div>
+  </div>
+  <p class="profile-intro">웹드라마, 다큐멘터리, 광고와 브랜드 콘텐츠를 촬영합니다.</p>
+
+  <section class="profile-group" aria-labelledby="educationHeading">
+    <div class="profile-group-heading"><span class="profile-number">01 / EDUCATION</span><h3 id="educationHeading">학력</h3></div>
+    <ul class="profile-records">
+      <li class="profile-record"><div><h4>경기영상과학고등학교</h4><p>방송영상연출과</p></div><span class="profile-state">졸업</span></li>
+      <li class="profile-record"><div><h4>국민대학교</h4><p>미디어·광고학부 미디어학과</p></div><span class="profile-state">재학</span></li>
+    </ul>
+  </section>
+
+  <section class="profile-group" aria-labelledby="experienceHeading">
+    <div class="profile-group-heading"><span class="profile-number">02 / EXPERIENCE</span><h3 id="experienceHeading">경력</h3></div>
+    <ul class="profile-records">
+      <li class="profile-record"><div><h4>국민대학교 총학생회</h4><p class="profile-position">미디어국 부장</p><p class="profile-description">사진·영상 콘텐츠 제작<br>행사 및 인터뷰 촬영</p></div><span class="profile-year">2021 — 2022</span></li>
+      <li class="profile-record"><div><h4>육군본부 미디어소통과</h4><p class="profile-position">영상제작병 · 전문특기병</p><p class="profile-description">홍보영상 촬영 및 제작<br>사진·영상 콘텐츠 제작<br>행사 및 인터뷰 촬영</p></div><span class="profile-year">2024 — 2026</span></li>
+    </ul>
+  </section>
+
+  <section class="profile-group" aria-labelledby="creditsHeading">
+    <div class="profile-group-heading"><span class="profile-number">03 / SELECTED CREDITS</span><h3 id="creditsHeading">주요 프로젝트</h3></div>
+    <div class="profile-credits">
+      <section class="credit-category" aria-label="웹드라마">
+        <h4 class="credit-category-heading">웹드라마<span>WEB DRAMA</span></h4>
+        <ul class="credit-list">
+          <li class="credit-row">
+            <div><h5 class="credit-title">레오를 죽이는 네가지 방법</h5><p class="credit-role">촬영감독</p><p class="credit-note">조회수 16.8만 회</p></div>
+            <div class="credit-date"><span>2024</span></div>
+          </li>
+          <li class="credit-row">
+            <div><h5 class="credit-title">나는 미래를 보았다</h5><p class="credit-role">촬영감독</p><p class="credit-note">조회수 11.3만 회</p></div>
+            <div class="credit-date"><span>2024</span></div>
+          </li>
+        </ul>
+      </section>
+      <section class="credit-category" aria-label="다큐멘터리">
+        <h4 class="credit-category-heading">다큐멘터리<span>DOCUMENTARY</span></h4>
+        <ul class="credit-list">
+          <li class="credit-row">
+            <div><h5 class="credit-title">여왕의 밥상 시즌2 — 울릉도·독도 편</h5><p class="credit-role">촬영감독</p><p class="credit-note">TBC · 왓챠 · 티빙 · 웨이브</p></div>
+            <div class="credit-date"><span>2024</span></div>
+          </li>
+          <li class="credit-row">
+            <div><h5 class="credit-title">이화여자대학교 대학원 전시 다큐멘터리</h5><p class="credit-role">촬영감독</p></div>
+            <div class="credit-date"><span>2024</span></div>
+          </li>
+          <li class="credit-row">
+            <div><h5 class="credit-title">여왕의 밥상 시즌3</h5><p class="credit-role">촬영감독</p></div>
+            <div class="credit-date"><span>2026</span><span class="credit-status">방영 예정</span></div>
+          </li>
+        </ul>
+      </section>
+      <section class="credit-category" aria-label="홍보영상">
+        <h4 class="credit-category-heading">홍보영상<span>PROMOTIONAL FILM</span></h4>
+        <ul class="credit-list">
+          <li class="credit-row">
+            <div><h5 class="credit-title">성북경찰서 보이스피싱 예방 홍보영상</h5><p class="credit-role">촬영·연출감독</p><p class="credit-note">2022년·2023년 제작 참여</p></div>
+            <div class="credit-date"><span>2022 · 2023</span></div>
+          </li>
+          <li class="credit-row">
+            <div><h5 class="credit-title">초록우산 × 다음세대재단, 도시를 만드는 사람들 소개영상</h5><p class="credit-role">촬영감독</p></div>
+            <div class="credit-date"><span>2024</span></div>
+          </li>
+        </ul>
+      </section>
+      <section class="credit-category" aria-label="광고">
+        <h4 class="credit-category-heading">광고<span>COMMERCIAL</span></h4>
+        <ul class="credit-list">
+          <li class="credit-row">
+            <div><h5 class="credit-title">SK텔레콤 에이닷 브랜드 광고영상</h5><p class="credit-role">B캠 촬영</p><p class="credit-note">조회수 48.0만 회</p></div>
+            <div class="credit-date"><span>2023</span></div>
+          </li>
+          <li class="credit-row">
+            <div><h5 class="credit-title">두바키(Dubaki) 오토바이 정비 플랫폼 광고</h5><p class="credit-role">촬영감독</p></div>
+            <div class="credit-date"><span>2024</span></div>
+          </li>
+        </ul>
+      </section>
+      <section class="credit-category" aria-label="콘텐츠">
+        <h4 class="credit-category-heading">콘텐츠<span>CONTENT SERIES</span></h4>
+        <ul class="credit-list">
+          <li class="credit-row">
+            <div><h5 class="credit-title">육군본부 아미인사이드</h5><p class="credit-role">촬영·연출감독·편집</p><p class="credit-note">총 14편 · 누적 조회수 288만 회</p></div>
+            <div class="credit-date"><span>2025 — 2026</span></div>
+          </li>
+        </ul>
+      </section>
+      <section class="credit-category" aria-label="독립영화">
+        <h4 class="credit-category-heading">독립영화<span>INDEPENDENT FILM</span></h4>
+        <ul class="credit-list">
+          <li class="credit-row">
+            <div><h5 class="credit-title">독립 단편영화 13편</h5><p class="credit-role">촬영감독</p></div>
+            <div class="credit-date"><span>2021 — 2026</span></div>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </section>
+
+  <section class="profile-group" aria-labelledby="qualificationsHeading">
+    <div class="profile-group-heading"><span class="profile-number">04 / QUALIFICATIONS</span><h3 id="qualificationsHeading">교육·자격</h3></div>
+    <ul class="profile-qualifications">
+      <li><span class="qualification-type">EDUCATION</span><p>초경량비행장치 무인멀티콥터 4종 조종자 교육 이수</p></li>
+      <li><span class="qualification-type">DIAT</span><p>디지털정보활용능력 · 그래픽</p></li>
+      <li><span class="qualification-type">DIAT</span><p>디지털정보활용능력 · 멀티미디어제작</p></li>
+    </ul>
+  </section>
+</section>
 
 <div class="divider"></div>
 
