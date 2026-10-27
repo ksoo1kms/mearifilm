@@ -2,8 +2,8 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>메아리</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>메아리필름</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Montserrat:wght@100;200;300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;800;900&display=swap" rel="stylesheet">
@@ -373,7 +373,7 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
   .lightbox-caption { margin-top: .75rem; }
   .gallery-navigation { margin-top: .5rem; }
 }
-/* 메아리 wordmark — Korean type with the existing editorial proportions. */
+/* 메아리필름 wordmark — Korean type with the existing editorial proportions. */
 .brand-mark, .nav-logo, .f-logo { font-family: 'Noto Sans KR', sans-serif; }
 .brand-mark { font-weight: 900; line-height: 1.12; letter-spacing: -.065em; }
 .nav-logo { font-weight: 800; }
@@ -497,6 +497,167 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
   .nav-links a { font-size: .5rem; letter-spacing: .06em; }
 }
 
+
+/* Responsive refinement: readable type, touch targets and a full-screen viewer. */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+.nav-toggle, .nav-backdrop, .landing-scroll, .photo-controls, .mobile-only { display: none; }
+.gallery-counter { color: #c4c4cb; font: 400 12px/1.5 'Montserrat', sans-serif; letter-spacing: .12em; min-width: 80px; text-align: center; }
+.gallery-step:disabled { opacity: .35; cursor: default; }
+.lightbox-gallery { overscroll-behavior-x: contain; }
+.lightbox-gallery img { -webkit-user-drag: none; }
+a:focus-visible, button:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+
+@media (min-width: 769px) and (max-width: 1024px) and (min-height: 481px) {
+  .ex-note { font-size: 12px; letter-spacing: .12em; }
+  .series-label { font-size: 14px; }
+  .series-label span:last-child { font-size: 11px; letter-spacing: .08em; }
+  .profile-intro, .credit-title, .profile-qualifications p { font-size: 16px; }
+  .profile-record h4 { font-size: 18px; }
+  .profile-record p { font-size: 15px; }
+  .profile-number, .qualification-type { font-size: 11px; }
+  .profile-state, .credit-role { font-size: 14px; }
+  .profile-year, .credit-date, .credit-status { font-size: 12px; }
+  .credit-note { font-size: 13px; }
+  .film-card-title { font-size: 18px; }
+  .film-role, .film-card-meta, .film-scroll-note { font-size: 12px; }
+  .film-scroll-note { letter-spacing: .05em; }
+  .c-type { color: #aaaab3; font-size: 12px; }
+  .c-val { font-size: 16px; }
+  a.c-val { display: inline-flex; align-items: center; min-height: 48px; }
+  .f-logo, .f-copy { color: #9999a4; font-size: 12px; letter-spacing: .06em; }
+}
+
+@media (max-width: 1024px) {
+  :root { --mobile-header: calc(65px + env(safe-area-inset-top, 0px)); }
+  nav, nav.scrolled {
+    inset: 0 0 auto; min-height: var(--mobile-header);
+    padding: calc(10px + env(safe-area-inset-top, 0px)) max(20px, env(safe-area-inset-right, 0px)) 10px max(20px, env(safe-area-inset-left, 0px));
+    background: rgba(0,0,0,.96); border-bottom: 1px solid #242429;
+    transition: background .2s; gap: 20px;
+  }
+  .nav-logo { opacity: 1; transform: none; font-size: 20px; min-height: 44px; display: flex; align-items: center; }
+  .nav-toggle { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-width: 104px; min-height: 44px; padding: 0 14px; border: 1px solid #55555c; color: #eee; background: #090909; font: 500 12px/1 'Montserrat', sans-serif; letter-spacing: .1em; cursor: pointer; }
+  .nav-toggle-icon { display: grid; gap: 5px; width: 16px; }
+  .nav-toggle-icon::before, .nav-toggle-icon::after { content: ''; width: 16px; height: 1px; background: currentColor; transition: transform .2s; }
+  .menu-open .nav-toggle-icon::before { transform: translateY(3px) rotate(45deg); }
+  .menu-open .nav-toggle-icon::after { transform: translateY(-3px) rotate(-45deg); }
+  .nav-links { display: none; position: absolute; inset: 100% 0 auto; padding: 12px max(20px, env(safe-area-inset-right, 0px)) 20px max(20px, env(safe-area-inset-left, 0px)); background: #080808; border-bottom: 1px solid #35353c; max-height: calc(100vh - var(--mobile-header)); max-height: calc(100dvh - var(--mobile-header)); overflow-y: auto; gap: 0; }
+  .menu-open .nav-links { display: flex; flex-direction: column; }
+  .nav-links li { width: 100%; border-bottom: 1px solid #242429; }
+  .nav-links li:last-child { border: 0; }
+  .nav-links a { display: flex; align-items: center; justify-content: space-between; min-height: 56px; padding: 12px 4px; color: #dddde2; font-size: 16px; font-weight: 400; letter-spacing: .1em; }
+  .nav-links a::after { content: '↗'; font-size: 18px; color: #aaaab3; }
+  .nav-backdrop:not([hidden]) { display: block; position: fixed; inset: var(--mobile-header) 0 0; z-index: 99; border: 0; background: rgba(0,0,0,.72); width: 100%; padding: 0; }
+  body.nav-open { overflow: hidden; }
+  #profile, #film, #exhibition, #contact { scroll-margin-top: calc(var(--mobile-header) + 16px); }
+  .gallery-step { min-width: 48px; min-height: 48px; font-size: 20px; touch-action: manipulation; }
+  .editorial-corner-tag { display: none; }
+  .film-grain { animation: none; opacity: .035; }
+  .scan-lines { opacity: .08; }
+}
+
+@media (max-width: 768px), (max-height: 480px) and (max-width: 1024px) {
+  :root { --page-gutter: max(20px, env(safe-area-inset-left, 0px)); }
+  .desktop-only { display: none; }
+  .mobile-only { display: inline; }
+  .editorial-frame { inset: 10px; border-color: rgba(255,255,255,.04); }
+  #landing { min-height: 100vh; min-height: 100svh; height: auto; padding: calc(var(--mobile-header) + 48px) 24px 120px; }
+  .brand-mark { font-size: clamp(48px, 15.5vw, 76px); line-height: 1.2; }
+  .studio-title { font-size: 12px; letter-spacing: .3em; padding-left: .3em; margin-top: 12px; }
+  .brand-serial { display: none; }
+  .manifesto-box { margin-top: 36px; }
+  .brand-sub { font-size: 12px; line-height: 1.8; letter-spacing: .12em; padding: 0; }
+  .landing-scroll { position: absolute; z-index: 3; bottom: max(28px, env(safe-area-inset-bottom, 0px)); left: 50%; transform: translateX(-50%); display: flex; align-items: center; justify-content: center; min-height: 48px; min-width: 160px; gap: 16px; color: #dadadf; font: 400 12px 'Montserrat', sans-serif; letter-spacing: .12em; text-decoration: none; }
+  #exhibition, .film-section { padding: 64px 0 56px var(--page-gutter); }
+  .ex-header { padding-right: var(--page-gutter); gap: 16px; margin-bottom: 28px; }
+  .ex-title, .profile-header .ex-title { font-size: clamp(34px, 9vw, 46px); line-height: 1.12; letter-spacing: 0; overflow-wrap: normal; }
+  .ex-note { font-size: 12px; line-height: 1.8; letter-spacing: .1em; color: #aaaab2; }
+  .ex-title, .ex-note, .frames-grid, .frames-grid .frame, .contact-head, .contact-line { opacity: 1; transform: none; transition: none; }
+  .scroll-wrapper { padding-right: var(--page-gutter); padding-bottom: 16px; scroll-snap-type: x mandatory; scroll-padding: 0; overscroll-behavior-x: contain; }
+  .frames-grid, .film-track { gap: 16px; }
+  .frame { width: min(82vw, 360px); height: auto; aspect-ratio: 1; scroll-snap-align: start; scroll-snap-stop: always; }
+  .series-label { flex-direction: column; align-items: flex-start; gap: 6px; padding: 44px 18px 18px; font-size: 14px; letter-spacing: .09em; }
+  .series-label span:last-child { font-size: 11px; letter-spacing: .08em; }
+  .photo-controls, .film-controls { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-right: var(--page-gutter); margin-top: 12px; }
+  .photo-controls > div { display: flex; gap: 8px; }
+  .collection-hint, .film-scroll-note { color: #aaaab2; font: 400 12px/1.7 'Noto Sans KR', sans-serif; letter-spacing: 0; max-width: none; }
+  .film-card { width: min(84vw, 460px); flex-basis: min(84vw, 460px); scroll-snap-align: start; scroll-snap-stop: always; }
+  .film-card-meta { margin-top: 16px; font-size: 12px; letter-spacing: .08em; color: #aaaab2; }
+  .film-card-title { font-size: 18px; line-height: 1.65; margin-top: 8px; word-break: keep-all; overflow-wrap: anywhere; }
+  .film-role { font-size: 13px; line-height: 1.7; letter-spacing: .02em; color: #aaaab2; }
+  .film-open { right: 12px; bottom: 12px; font-size: 11px; padding: 10px 12px; letter-spacing: .08em; }
+  .divider { margin: 0 var(--page-gutter); }
+  .profile-section { padding: 64px var(--page-gutter) 36px; }
+  .profile-header { padding-right: 0; margin-bottom: 24px; }
+  .profile-intro { font-size: 16px; line-height: 1.85; margin-bottom: 36px; color: #c2c2c9; word-break: keep-all; }
+  .profile-group { grid-template-columns: minmax(0, 1fr); padding: 28px 0; gap: 24px; }
+  .profile-number { font-size: 11px; line-height: 1.6; letter-spacing: .1em; color: #aaaab3; }
+  .profile-group-heading h3 { font-size: 20px; margin-top: 8px; }
+  .profile-record { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; padding: 24px 0; }
+  .profile-record h4 { font-size: 17px; line-height: 1.65; word-break: keep-all; overflow-wrap: anywhere; }
+  .profile-record p { font-size: 14px; line-height: 1.9; color: #bdbdc6; word-break: keep-all; overflow-wrap: anywhere; }
+  .profile-record p.profile-description { color: #aaaab4; }
+  .profile-year { font-size: 12px; line-height: 1.8; letter-spacing: 0; }
+  .profile-state { font-size: 14px; }
+  .credit-category + .credit-category { margin-top: 32px; }
+  .credit-category-heading { font-size: 15px; gap: 10px; }
+  .credit-category-heading span { font-size: 10px; line-height: 1.7; letter-spacing: .07em; color: #aaaab2; }
+  .credit-row { grid-template-columns: minmax(0, 1fr); padding: 20px 0; gap: 10px; }
+  .credit-title { font-size: 16px; line-height: 1.7; word-break: keep-all; overflow-wrap: anywhere; }
+  .credit-role { font-size: 14px; line-height: 1.8; color: #c0c0c8; }
+  .credit-note { font-size: 13px; line-height: 1.8; color: #aaaab4; }
+  .credit-date { flex-direction: row; align-items: center; flex-wrap: wrap; font-size: 12px; letter-spacing: .02em; padding: 0; }
+  .credit-status { font-size: 12px; padding: 3px 8px; }
+  .profile-qualifications li { padding: 20px 0; }
+  .qualification-type { font-size: 11px; letter-spacing: .1em; color: #aaaab4; }
+  .profile-qualifications p { font-size: 15px; line-height: 1.85; word-break: keep-all; overflow-wrap: anywhere; }
+  #contact { padding: 64px var(--page-gutter); }
+  .contact-head { font-size: 42px; margin: 0 0 28px; }
+  .contact-line { gap: 8px; padding: 20px 0; margin: 0; border-color: #27272c; }
+  .c-type { font-size: 12px; line-height: 1.6; letter-spacing: .12em; color: #aaaab3; }
+  .c-val { font-size: 16px; line-height: 1.8; letter-spacing: .01em; word-break: normal; overflow-wrap: anywhere; }
+  a.c-val { display: flex; align-items: center; min-height: 48px; padding: 6px 0; }
+  footer { padding: 32px var(--page-gutter) calc(32px + env(safe-area-inset-bottom, 0px)); gap: 12px; }
+  .f-logo { font-size: 12px; color: #aaaab2; }
+  .f-copy { font-size: 11px; letter-spacing: .06em; line-height: 1.8; color: #9999a4; }
+}
+
+@media (max-width: 1024px) {
+  .lightbox, .lightbox.film-view { display: block; padding: 0 0 max(24px, env(safe-area-inset-bottom, 0px)); overflow-x: hidden; overflow-y: auto; overscroll-behavior-y: contain; height: 100vh; height: 100dvh; transition: opacity .15s; }
+  .lightbox-close, .film-view .lightbox-close { position: sticky; top: max(12px, env(safe-area-inset-top, 0px)); right: auto; display: flex; justify-content: center; align-items: center; width: fit-content; min-width: 104px; min-height: 48px; margin: calc(12px + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) 16px auto; padding: 12px 16px; z-index: 5; border: 1px solid #55555e; background: rgba(0,0,0,.96); color: #eee; font-size: 12px; line-height: 1.5; letter-spacing: .1em; }
+  .lightbox-img-wrapper { width: 100%; max-width: 100%; border: 0; margin: 0; transform: none; background: #050505; }
+  .lightbox.active .lightbox-img-wrapper { transform: none; }
+  .lightbox-gallery { gap: 0; padding: 0; scroll-snap-type: x mandatory; scroll-padding: 0; scrollbar-width: none; }
+  .lightbox-gallery::-webkit-scrollbar { display: none; }
+  .lightbox-gallery img, .film-view .lightbox-gallery img {
+    flex: 0 0 100%; width: 100%; min-width: 100%; max-width: none;
+    height: min(62vh, calc(100vw - 32px)); height: min(62svh, calc(100vw - 32px));
+    object-fit: contain; object-position: center; border: 0; padding: 0 max(16px, env(safe-area-inset-left, 0px));
+    scroll-snap-align: center; scroll-snap-stop: always;
+  }
+  .film-view .lightbox-gallery img { height: min(48vh, 360px); height: min(48svh, 360px); }
+  .film-view[data-format="wide"] .lightbox-gallery img { height: clamp(130px, calc((100vw - 32px) / 2.35), min(48svh, 360px)); }
+  .film-view[data-format="portrait"] .lightbox-gallery img { height: min(62svh, 500px); }
+  .lightbox-caption, .film-view .lightbox-caption { margin: 20px 20px 0; color: #eee; font: 400 16px/1.7 'Montserrat', 'Noto Sans KR', sans-serif; letter-spacing: .01em; word-break: keep-all; overflow-wrap: anywhere; }
+  .gallery-navigation, .film-view .gallery-navigation { justify-content: space-between; gap: 20px; padding: 0 max(20px, env(safe-area-inset-right, 0px)) 0 max(20px, env(safe-area-inset-left, 0px)); margin: 16px auto 0; max-width: 560px; }
+  .gallery-counter { font-size: 13px; }
+  .film-details { width: auto; max-width: 720px; margin: 28px auto 0; padding: 24px max(20px, env(safe-area-inset-right, 0px)) 0 max(20px, env(safe-area-inset-left, 0px)); border-top: 1px solid #303036; }
+  .film-specs { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 16px; }
+  .film-specs dt { font-size: 11px; line-height: 1.6; color: #aaaab3; margin-bottom: 5px; letter-spacing: .1em; }
+  .film-specs dd { font-size: 14px; line-height: 1.6; color: #d0d0d8; font-weight: 400; overflow-wrap: anywhere; }
+  .film-links { gap: 12px; margin-top: 24px; }
+  .film-links a { display: flex; align-items: center; justify-content: center; min-height: 48px; flex: 1 1 180px; padding: 12px 16px; border: 1px solid #66666e; font-size: 12px; letter-spacing: .1em; color: #eee; }
+}
+
+@media (max-height: 480px) and (max-width: 1024px) {
+  #landing { min-height: 480px; }
+  .lightbox-gallery img, .film-view .lightbox-gallery img { height: 62vh; height: 62svh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  .ex-title, .ex-note, .frames-grid, .frame, .contact-head, .contact-line { opacity: 1; transform: none; }
+}
+
 </style>
 </head>
 <body>
@@ -505,27 +666,29 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
 <div class="scan-lines"></div>
 <div class="custom-cursor" id="customCursor"></div>
 <div class="editorial-frame"></div>
-<div class="editorial-corner-tag">메아리 [ 2026 ARCHIVE ]</div>
+<div class="editorial-corner-tag">메아리필름 [ 2026 ARCHIVE ]</div>
 
-<nav id="mainNav">
+<nav id="mainNav" aria-label="주 메뉴">
   <div class="nav-logo-wrapper">
-    <a href="#landing" class="nav-logo">메아리</a>
+    <a href="#landing" class="nav-logo">메아리필름</a>
   </div>
-  <ul class="nav-links">
+  <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainMenu" aria-label="메뉴 열기"><span id="navToggleText">MENU</span><span class="nav-toggle-icon" aria-hidden="true"></span></button>
+  <ul class="nav-links" id="mainMenu">
     <li><a href="#exhibition">Photo</a></li>
     <li><a href="#film">Film</a></li>
     <li><a href="#profile">Profile</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
+<button class="nav-backdrop" id="navBackdrop" type="button" aria-label="메뉴 닫기" hidden></button>
 
 <section id="landing">
   <div class="landing-bg-placeholder" id="landingBg" style="background: url('https://i.ibb.co/0jzwS65p/000032.jpg') no-repeat center center/cover;"></div>
   <div class="landing-overlay"></div>
   <div class="landing-content" id="landingContent">
     <div class="title-container">
-      <h1 class="brand-mark">메아리</h1>
-      <span class="studio-title">MEARI STUDIO</span>
+      <h1 class="brand-mark">메아리필름</h1>
+      <span class="studio-title">MEARI FILM</span>
       <span class="brand-serial">01/01</span>
     </div>
      
@@ -533,6 +696,7 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
       <p class="brand-sub">Photography &amp; Film</p>
     </div>
   </div>
+  <a class="landing-scroll" href="#exhibition">VIEW WORKS <span aria-hidden="true">↓</span></a>
 </section>
 
 <div class="divider"></div>
@@ -543,7 +707,7 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
     <div class="ex-note">Portrait Series<br>02 Collections</div>
   </div>
 
-  <div class="scroll-wrapper" id="scrollWrapper">
+  <div class="scroll-wrapper" id="scrollWrapper" tabindex="0" role="region" aria-label="사진 시리즈, 옆으로 스크롤">
     <div class="frames-grid" id="framesGrid">
       <div class="frame has-image portrait-series" role="button" tabindex="0"
            aria-label="KIM SUMIN 시리즈 사진 6장 보기"
@@ -575,6 +739,10 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
        
 
     </div>
+  </div>
+  <div class="photo-controls">
+    <span class="collection-hint">옆으로 넘겨 보세요</span>
+    <div><button class="gallery-step" type="button" aria-label="이전 사진 시리즈" onclick="scrollPhotoProjects(-1)">←</button><button class="gallery-step" type="button" aria-label="다음 사진 시리즈" onclick="scrollPhotoProjects(1)">→</button></div>
   </div>
 </section>
 
@@ -637,33 +805,33 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
     </div>
   </div>
   <div class="film-controls">
-    <span class="film-scroll-note">SCROLL TO EXPLORE / 08 PROJECTS</span>
+    <span class="film-scroll-note"><span class="desktop-only">SCROLL TO EXPLORE / 08 PROJECTS</span><span class="mobile-only">옆으로 넘겨 보세요</span></span>
     <div><button class="gallery-step" type="button" aria-label="이전 영상 작품" onclick="scrollFilmProjects(-1)">←</button><button class="gallery-step" type="button" aria-label="다음 영상 작품" onclick="scrollFilmProjects(1)">→</button></div>
   </div>
 </section>
 
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightboxCaption" aria-hidden="true" inert onclick="closeDetail()">
-  <button type="button" class="lightbox-close" aria-label="사진 닫기">Close —</button>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightboxCaption" aria-hidden="true" inert onclick="if (event.target === this) closeDetail()">
+  <button type="button" class="lightbox-close" onclick="closeDetail()" aria-label="갤러리 닫기">CLOSE ×</button>
   <div class="lightbox-img-wrapper" onclick="event.stopPropagation()">
     <div class="lightbox-gallery hidden" id="lightboxGallery">
-      <img src="https://i.ibb.co/cSBdGWRr/for-upolad-1.jpg" alt="KIM SUMIN Work 1">
-      <img src="https://i.ibb.co/v4HsQ57H/for-upolad-2.jpg" alt="KIM SUMIN Work 2">
-      <img src="https://i.ibb.co/tTnx94Pr/for-upolad-3.jpg" alt="KIM SUMIN Work 3">
-      <img src="https://i.ibb.co/n85zHXcQ/for-upolad-4.jpg" alt="KIM SUMIN Work 4">
-      <img src="https://i.ibb.co/qLph6dFz/for-upolad-5.jpg" alt="KIM SUMIN Work 5">
-      <img src="https://i.ibb.co/LX1BJ876/for-upolad-6.jpg" alt="KIM SUMIN Work 6">
+      <img src="https://i.ibb.co/cSBdGWRr/for-upolad-1.jpg" alt="KIM SUMIN Work 1" loading="lazy" decoding="async">
+      <img src="https://i.ibb.co/v4HsQ57H/for-upolad-2.jpg" alt="KIM SUMIN Work 2" loading="lazy" decoding="async">
+      <img src="https://i.ibb.co/tTnx94Pr/for-upolad-3.jpg" alt="KIM SUMIN Work 3" loading="lazy" decoding="async">
+      <img src="https://i.ibb.co/n85zHXcQ/for-upolad-4.jpg" alt="KIM SUMIN Work 4" loading="lazy" decoding="async">
+      <img src="https://i.ibb.co/qLph6dFz/for-upolad-5.jpg" alt="KIM SUMIN Work 5" loading="lazy" decoding="async">
+      <img src="https://i.ibb.co/LX1BJ876/for-upolad-6.jpg" alt="KIM SUMIN Work 6" loading="lazy" decoding="async">
     </div>
     <span class="lightbox-placeholder-text" id="lightboxPlaceholder"></span>
   </div>
   <div class="lightbox-caption" id="lightboxCaption"></div>
+  <div class="gallery-navigation" id="galleryNavigation" hidden onclick="event.stopPropagation()">
+    <button type="button" class="gallery-step" aria-label="이전 사진" onclick="scrollGallery(-1)">←</button>
+    <span class="gallery-counter" id="galleryCounter" role="status" aria-live="polite" aria-atomic="true"></span>
+    <button type="button" class="gallery-step" aria-label="다음 사진" onclick="scrollGallery(1)">→</button>
+  </div>
   <div class="film-details" id="filmDetails" hidden onclick="event.stopPropagation()">
     <dl class="film-specs" id="filmSpecs"></dl>
     <div class="film-links" id="filmLinks"></div>
-  </div>
-  <div class="gallery-navigation" id="galleryNavigation" hidden onclick="event.stopPropagation()">
-    <button type="button" class="gallery-step" aria-label="이전 사진" onclick="scrollGallery(-1)">←</button>
-    <span class="gallery-hint">SCROLL TO EXPLORE</span>
-    <button type="button" class="gallery-step" aria-label="다음 사진" onclick="scrollGallery(1)">→</button>
   </div>
 </div>
 
@@ -789,28 +957,16 @@ footer { padding: 6rem 6.5rem; border-top: 1px solid var(--border); display: fle
   <div class="contact-head">CONTACT</div>
   <div class="contact-line"><span class="c-type">Phone</span><a href="tel:01036610792" class="c-val">010-3661-0792</a></div>
   <div class="contact-line"><span class="c-type">Email</span><a href="mailto:ksoo1kms@gmail.com" class="c-val">ksoo1kms@gmail.com</a></div>
-  <div class="contact-line"><span class="c-type">Studio Base</span><span class="c-val">고양시 향동동 469, 702호</span></div>
+  <div class="contact-line"><span class="c-type">Location</span><span class="c-val">고양시 향동동 469, 702호</span></div>
 </section>
 
 <footer>
-  <span class="f-logo">© 메아리 — SECURED ARCHIVE.</span>
+  <span class="f-logo">© 메아리필름 — SECURED ARCHIVE.</span>
   <span class="f-copy">All Properties Restricted / 2026</span>
 </footer>
 
 <script>
-if ('scrollRestoration' in history) { 
-  history.scrollRestoration = 'manual'; 
-}
-
-function initScrollReset() {
-  window.scrollTo({ top: 0, left: 0 });
-}
-
-window.addEventListener('beforeunload', initScrollReset);
-window.addEventListener('DOMContentLoaded', initScrollReset);
-window.addEventListener('load', () => { 
-  setTimeout(initScrollReset, 5); 
-});
+if ('scrollRestoration' in history) history.scrollRestoration = 'auto';
 
 const cursor = document.getElementById('customCursor');
 if (cursor && window.matchMedia('(min-width: 1025px)').matches) {
@@ -893,17 +1049,26 @@ const hanTengyaImages = [
   ['014', '옆모습과 움직임, 흑백 포트레이트']
 ];
 let galleryTrigger = null;
-let previousBodyOverflow = '';
+let savedPageScroll = 0;
+let savedBodyStyles = null;
+let galleryHistoryEntry = false;
 
 function activateLightbox() {
+  closeMobileMenu();
   const lightbox = document.getElementById('lightbox');
   galleryTrigger = document.activeElement;
-  previousBodyOverflow = document.body.style.overflow;
-  document.body.style.overflow = 'hidden';
+  savedPageScroll = window.scrollY;
+  galleryHistoryEntry = window.matchMedia('(max-width: 1024px)').matches;
+  if (galleryHistoryEntry) history.pushState({ ...history.state, meariGallery: true }, '');
+  const body = document.body;
+  savedBodyStyles = Object.fromEntries(['position', 'top', 'left', 'right', 'width', 'overflow'].map(key => [key, body.style[key]]));
+  Object.assign(body.style, { position: 'fixed', top: -savedPageScroll + 'px', left: '0', right: '0', width: '100%', overflow: 'hidden' });
   lightbox.inert = false;
   lightbox.setAttribute('aria-hidden', 'false');
   lightbox.classList.add('active');
+  lightbox.scrollTop = 0;
   lightbox.querySelector('.lightbox-close').focus({ preventScroll: true });
+  requestAnimationFrame(updateGalleryState);
 }
 
 function openGallery(date, series = 'actor01') {
@@ -917,6 +1082,8 @@ function openGallery(date, series = 'actor01') {
       const img = document.createElement('img');
       img.src = 'han-tengya-' + number + '.jpg';
       img.alt = 'HAN TENGYA ' + number + ' — ' + description;
+      img.loading = 'lazy';
+      img.decoding = 'async';
       img.width = 1000;
       img.height = 1000;
       return img;
@@ -931,11 +1098,35 @@ function openGallery(date, series = 'actor01') {
   activateLightbox();
 }
 
+function currentGalleryIndex() {
+  const images = Array.from(galleryElement.querySelectorAll('img'));
+  const left = galleryElement.getBoundingClientRect().left + (parseFloat(getComputedStyle(galleryElement).paddingLeft) || 0);
+  let selected = 0;
+  let distance = Infinity;
+  images.forEach((image, index) => {
+    const candidate = Math.abs(image.getBoundingClientRect().left - left);
+    if (candidate < distance) { distance = candidate; selected = index; }
+  });
+  return selected;
+}
+
+function updateGalleryState() {
+  const images = galleryElement.querySelectorAll('img');
+  if (!images.length) return;
+  const index = currentGalleryIndex();
+  document.getElementById('galleryCounter').textContent = String(index + 1).padStart(2, '0') + ' / ' + String(images.length).padStart(2, '0');
+  const buttons = document.querySelectorAll('#galleryNavigation button');
+  buttons[0].disabled = galleryElement.scrollLeft <= 1;
+  buttons[1].disabled = galleryElement.scrollLeft >= galleryElement.scrollWidth - galleryElement.clientWidth - 1;
+}
+
 function scrollGallery(direction) {
-  const firstImage = galleryElement.querySelector('img');
-  if (!firstImage) return;
-  const gap = parseFloat(getComputedStyle(galleryElement).gap) || 0;
-  galleryElement.scrollBy({ left: direction * (firstImage.getBoundingClientRect().width + gap), behavior: 'smooth' });
+  const images = galleryElement.querySelectorAll('img');
+  if (!images.length) return;
+  const index = Math.max(0, Math.min(images.length - 1, currentGalleryIndex() + direction));
+  const padding = parseFloat(getComputedStyle(galleryElement).paddingLeft) || 0;
+  const left = galleryElement.scrollLeft + images[index].getBoundingClientRect().left - galleryElement.getBoundingClientRect().left - padding;
+  galleryElement.scrollTo({ left, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
 }
 
 function openDetail(date) {
@@ -947,13 +1138,19 @@ function openDetail(date) {
   activateLightbox();
 }
 
-function closeDetail() {
+function closeDetail(fromHistory = false) {
   const lightbox = document.getElementById('lightbox');
+  if (!lightbox.classList.contains('active')) return;
   lightbox.classList.remove('active');
   lightbox.inert = true;
   lightbox.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = previousBodyOverflow;
+  if (savedBodyStyles) Object.assign(document.body.style, savedBodyStyles);
+  window.scrollTo({ top: savedPageScroll, behavior: 'instant' });
   if (galleryTrigger && galleryTrigger.isConnected) galleryTrigger.focus({ preventScroll: true });
+  if (galleryHistoryEntry && !fromHistory) {
+    galleryHistoryEntry = false;
+    history.back();
+  } else galleryHistoryEntry = false;
 }
 
 document.addEventListener('keydown', (event) => {
@@ -963,7 +1160,7 @@ document.addEventListener('keydown', (event) => {
   if (event.key === 'ArrowRight') { event.preventDefault(); scrollGallery(1); }
   if (event.key === 'ArrowLeft') { event.preventDefault(); scrollGallery(-1); }
   if (event.key === 'Tab') {
-    const buttons = Array.from(lightbox.querySelectorAll('button, a[href]')).filter(button => !button.closest('[hidden]'));
+    const buttons = Array.from(lightbox.querySelectorAll('button, a[href]')).filter(button => !button.closest('[hidden]') && !button.disabled);
     const first = buttons[0];
     const last = buttons[buttons.length - 1];
     if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
@@ -983,12 +1180,14 @@ function openFilm(index) {
   if (!project) return;
   const lightbox = document.getElementById('lightbox');
   lightbox.classList.add('film-view');
+  lightbox.dataset.format = project.aspect === '3 : 4' ? 'portrait' : 'wide';
   document.getElementById('lightboxCaption').textContent = project.title;
   galleryElement.replaceChildren(...project.images.map((source, number) => {
     const image = document.createElement('img');
     image.src = source;
     image.alt = project.title + ' — 스틸 ' + String(number + 1).padStart(2, '0');
     image.decoding = 'async';
+    image.loading = number === 0 ? 'eager' : 'lazy';
     return image;
   }));
   galleryElement.classList.remove('hidden');
@@ -1022,8 +1221,85 @@ function scrollFilmProjects(direction) {
   const track = document.getElementById('filmScroll');
   const card = track.querySelector('.film-card');
   const gap = parseFloat(getComputedStyle(track.querySelector('.film-track')).gap) || 0;
-  track.scrollBy({ left: direction * (card.getBoundingClientRect().width + gap), behavior: 'smooth' });
+  track.scrollBy({ left: direction * (card.getBoundingClientRect().width + gap), behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
 }
+
+
+const navToggle = document.getElementById('navToggle');
+const navBackdrop = document.getElementById('navBackdrop');
+const mainMenu = document.getElementById('mainMenu');
+
+window.addEventListener('popstate', () => {
+  if (document.getElementById('lightbox').classList.contains('active')) closeDetail(true);
+  closeMobileMenu();
+});
+
+function closeMobileMenu(returnFocus = false) {
+  nav.classList.remove('menu-open');
+  document.body.classList.remove('nav-open');
+  navToggle.setAttribute('aria-expanded', 'false');
+  navToggle.setAttribute('aria-label', '메뉴 열기');
+  document.getElementById('navToggleText').textContent = 'MENU';
+  navBackdrop.hidden = true;
+  if (returnFocus) navToggle.focus({ preventScroll: true });
+}
+
+navToggle.addEventListener('click', () => {
+  if (nav.classList.contains('menu-open')) { closeMobileMenu(true); return; }
+  nav.classList.add('menu-open');
+  document.body.classList.add('nav-open');
+  navToggle.setAttribute('aria-expanded', 'true');
+  navToggle.setAttribute('aria-label', '메뉴 닫기');
+  document.getElementById('navToggleText').textContent = 'CLOSE';
+  navBackdrop.hidden = false;
+});
+navBackdrop.addEventListener('click', () => closeMobileMenu(true));
+mainMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => closeMobileMenu()));
+document.querySelector('.nav-logo').addEventListener('click', () => closeMobileMenu());
+document.addEventListener('keydown', event => {
+  if (!nav.classList.contains('menu-open')) return;
+  if (event.key === 'Escape') { event.preventDefault(); closeMobileMenu(true); }
+  if (event.key === 'Tab') {
+    const last = mainMenu.querySelector('li:last-child a');
+    if (event.shiftKey && document.activeElement === navToggle) { event.preventDefault(); last.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); navToggle.focus(); }
+  }
+});
+window.matchMedia('(max-width: 1024px)').addEventListener('change', event => { if (!event.matches) closeMobileMenu(); });
+
+let galleryUpdateFrame = 0;
+galleryElement.addEventListener('scroll', () => {
+  cancelAnimationFrame(galleryUpdateFrame);
+  galleryUpdateFrame = requestAnimationFrame(updateGalleryState);
+}, { passive: true });
+galleryElement.addEventListener('load', updateGalleryState, true);
+window.addEventListener('resize', () => {
+  if (window.innerWidth <= 768) {
+    landingContent.style.transform = '';
+    brandMark.style.opacity = '';
+    studioTitle.style.opacity = '';
+    bgPlaceholder.style.transform = '';
+  }
+  if (document.getElementById('lightbox').classList.contains('active')) requestAnimationFrame(updateGalleryState);
+});
+
+function scrollPhotoProjects(direction) {
+  const frame = scrollWrapper.querySelector('.frame');
+  const gap = parseFloat(getComputedStyle(document.getElementById('framesGrid')).gap) || 0;
+  scrollWrapper.scrollBy({ left: direction * (frame.getBoundingClientRect().width + gap), behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+}
+
+function updateCollectionNavigation() {
+  [[scrollWrapper, '.photo-controls'], [document.getElementById('filmScroll'), '.film-controls']].forEach(([scroller, selector]) => {
+    const buttons = document.querySelectorAll(selector + ' button');
+    buttons[0].disabled = scroller.scrollLeft <= 1;
+    buttons[1].disabled = scroller.scrollLeft >= scroller.scrollWidth - scroller.clientWidth - 1;
+  });
+}
+[scrollWrapper, document.getElementById('filmScroll')].forEach(scroller => scroller.addEventListener('scroll', updateCollectionNavigation, { passive: true }));
+window.addEventListener('resize', updateCollectionNavigation);
+window.addEventListener('load', updateCollectionNavigation);
+updateCollectionNavigation();
 
 </script>
 
